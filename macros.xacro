@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- import robot constants -->
+  <xacro:include filename="$(cwd)/const_values.xacro" ns="const"/>
+
+  <!-- leg defining macro -->
+  <xacro:macro name="leg" params="prefix reflect leg_number">
+
+    <!-- coditional blocks -->
+    <xacro:if value="${reflect}">
+      <xacro:property name="reflect_multiplier" value="1" scope="parent"/>
+    </xacro:if>
+
+    <xacro:if value="${not reflect}">
+      <xacro:property name="reflect_multiplier" value="-1" scope="parent"/>
+    </xacro:if>
+
+
+    <xacro:if value="${leg_number == 'rear'}">
+      <xacro:property name="leg_pos" value="${-const.body_len/2}" scope="parent"/>
+    </xacro:if>
+
+    <xacro:if value="${leg_number == 'central'}">
+      <xacro:property name="leg_pos" value="0" scope="parent"/>
+    </xacro:if>
+
+    <xacro:if value="${leg_number == 'front'}">
+      <xacro:property name="leg_pos" value="${const.body_len/2}" scope="parent"/>
+    </xacro:if>
+
+
+
+    <!-- coax link definition -->
+    <link name="${prefix}_coax">
+      <visual>
+        <geometry>
+          <cylinder length="${const.coax_len}" radius="${const.coax_radius}"/>
+        </geometry>
+        <origin xyz="0 0 -${const.coax_len/2}" rpy="0 0 ${pi/2}"/>
+      </visual>
+
+      <collision>
+        <geometry>
+          <sphere radius="${const.coax_radius}"/>
+        </geometry>
+        <origin xyz="0 0 -${const.coax_len-(const.coax_radius/2)}" rpy="0 0 0"/>
+      </collision>
+
+      <inertial>
+        <mass value="${const.coax_mass}"/>
+        <inertia ixx="${const.coax_ixx}" ixy="${const.coax_ixy}" ixz="${const.coax_ixz}"
+                                         iyy="${const.coax_iyy}" iyz="${const.coax_iyz}"
+                                                                 izz="${const.coax_izz}"/>
+      </inertial>
+    </link>
+
+    <!-- femur link definition -->
+    <link name="${prefix}_femur">
+      <visual>
+        <geometry>
+          <cylinder length="${const.femur_len}" radius="${const.femur_radius}"/>
+        </geometry>
+        <origin xyz="0 0 -${const.femur_len/2}" rpy="0 0 0"/>
+      </visual>
+
+      <collision>
+        <geometry>
+          <sphere radius="${const.femur_radius}"/>
+        </geometry>
+        <origin xyz="0 0 -${const.femur_len-(const.femur_radius/2)}" rpy="0 0 0"/>
+      </collision>
+
+      <inertial>
+        <mass value="${const.femur_mass}"/>
+        <inertia ixx="${const.femur_ixx}" ixy="${const.femur_ixy}" ixz="${const.femur_ixz}"
+                                          iyy="${const.femur_iyy}" iyz="${const.femur_iyz}"
+                                                                   izz="${const.femur_izz}"/>
+      </inertial>
+    </link>
+
+    <!-- tibia link definition -->
+    <link name="${prefix}_tibia">
+      <visual>
+        <geometry>
+          <cylinder length="${const.tibia_len}" radius="${const.tibia_radius}"/>
+        </geometry>
+        <origin xyz="0 0 -${const.tibia_len/2}" rpy="0 0 0"/>
+      </visual>
+
+      <collision>
+        <geometry>
+          <sphere radius="${const.tibia_radius}"/>
+        </geometry>
+        <origin xyz="0 0 -${const.tibia_len-(const.tibia_radius/2)}" rpy="0 0 0"/>
+      </collision>
+
+      <inertial>
+        <mass value="${const.tibia_mass}"/>
+        <inertia ixx="${const.tibia_ixx}" ixy="${const.tibia_ixy}" ixz="${const.tibia_ixz}"
+                                          iyy="${const.tibia_iyy}" iyz="${const.tibia_iyz}"
+                                                                   izz="${const.tibia_izz}"/>
+      </inertial>
+    </link>
+
+
+    <!-- joint 1 definition -->
+    <joint name="${prefix}_coax_joint" type="revolute">
+      <parent link="base_link"/>
+      <child link="${prefix}_coax"/>
+      <axis xyz="0 -1 0"/>
+      <limit effort="${const.servo_effort}"
+             lower="${const.coax_joint_lower_limit}"
+             upper="${const.coax_joint_upper_limit}"
+             velocity="${const.servo_vel}"/>
+
+      <origin xyz="${leg_pos} ${reflect_multiplier*const.body_width/2} 0"
+              rpy="${reflect_multiplier*pi/2} 0 0"/>
+    </joint>
+
+
+    <!-- joint 2 definition -->
+    <joint name="${prefix}_femur_joint" type="revolute">
+      <parent link="${prefix}_coax"/>
+      <child link="${prefix}_femur"/>
+      <axis xyz="${reflect_multiplier*1} 0 0"/>
+      <limit effort="${const.servo_effort}"
+             lower="${const.femur_joint_lower_limit}"
+             upper="${const.femur_joint_upper_limit}"
+             velocity="${const.servo_vel}"/>
+
+      <origin xyz="${const.coax_to_femur_origin}"
+              rpy="0 0 0"/>
+    </joint>
+
+
+    <!-- joint 3 definition -->
+    <joint name="${prefix}_tibia_joint" type="revolute">
+      <parent link="${prefix}_femur"/>
+      <child link="${prefix}_tibia"/>
+      <axis xyz="${reflect_multiplier*1} 0 0"/>
+      <limit effort="${const.servo_effort}"
+             lower="${const.tibia_joint_lower_limit}"
+             upper="${const.tibia_joint_upper_limit}"
+             velocity="${const.servo_vel}"/>
+
+      <origin xyz="${const.femur_to_tibia_origin}"
+              rpy="0 0 0"/>
+    </joint>
+
+  </xacro:macro>
+
+  <!-- body defining macro -->
+  <xacro:macro name="body">
+    <link name="base_link">
+      <visual>
+        <geometry>
+          <box size="${const.body_len} ${const.body_width} ${const.body_thickness}"/>
+        </geometry>
+        <origin xyz="0 0 0"/>
+      </visual>
+
+      <collision>
+        <geometry>
+          <box size="${const.body_len} ${const.body_width} ${const.body_thickness}"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+        <mass value="${const.body_mass}"/>
+        <inertia ixx="${const.body_ixx}" ixy="${const.body_ixy}" ixz="${const.body_ixz}"
+                                         iyy="${const.body_iyy}" iyz="${const.body_iyz}"
+                                                                 izz="${const.body_izz}"/>
+      </inertial>
+    </link>
+  </xacro:macro>
+
+</robot>

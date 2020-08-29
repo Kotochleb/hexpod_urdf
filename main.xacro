@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="the_Walking_thread" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- import robot defining constants -->
+  <xacro:include filename="$(cwd)/const_values.xacro" ns="const"/>
+
+  <!-- import robot defining macros -->
+  <xacro:include filename="$(cwd)/macros.xacro" ns="macros"/>
+
+  <xacro:macros.body/>
+  <xacro:macros.leg prefix="left_front" reflect="true" leg_number="front"/>
+  <xacro:macros.leg prefix="left_central" reflect="true" leg_number="central"/>
+  <xacro:macros.leg prefix="left_rear" reflect="true" leg_number="rear"/>
+
+
+  <xacro:macros.leg prefix="right_front" reflect="false" leg_number="front"/>
+  <xacro:macros.leg prefix="right_central" reflect="false" leg_number="central"/>
+  <xacro:macros.leg prefix="right_rear" reflect="false" leg_number="rear"/>
+
+</robot>
