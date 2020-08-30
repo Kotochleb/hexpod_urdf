@@ -14,8 +14,8 @@ servo:
 
 
 
-coax:
-  name: 'coax'
+coxa:
+  name: 'coxa'
   link:
     length: 0.01
     radius: 0.001

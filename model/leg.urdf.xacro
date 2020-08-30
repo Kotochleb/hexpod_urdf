@@ -98,16 +98,16 @@
     </xacro:macro>
 
     <!-- DEFINE LINKS -->
-    <xacro:leg_link props="${robot_props['coax']}"/>
+    <xacro:leg_link props="${robot_props['coxa']}"/>
     <xacro:leg_link props="${robot_props['femur']}"/>
     <xacro:leg_link props="${robot_props['tibia']}"/>
 
     <!-- DEFINE JOINTS -->
     <xacro:leg_joint parent="${robot_props['body']}"
-                     child="${robot_props['coax']}"
+                     child="${robot_props['coxa']}"
                      axis="0 -1 0"/>
 
-    <xacro:leg_joint parent="${robot_props['coax']}"
+    <xacro:leg_joint parent="${robot_props['coxa']}"
                      child="${robot_props['femur']}"
                      axis="${reflect_multiplier*1} 0 0"/>
 
