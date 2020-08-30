@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="the_Walking_thread" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- BODY DEFINITION -->
+  <xacro:include filename="$(cwd)/model/body.urdf.xacro" ns="macros"/>
+  <xacro:macros.body/>
+
+  <!-- LED DEFINITION -->
+  <xacro:include filename="$(cwd)/model/leg.urdf.xacro" ns="macros"/>
+
+  <xacro:macros.leg leg_prefix="left_front" reflect="true" leg_number="front"/>
+  <xacro:macros.leg leg_prefix="left_central" reflect="true" leg_number="central"/>
+  <xacro:macros.leg leg_prefix="left_rear" reflect="true" leg_number="rear"/>
+
+
+  <xacro:macros.leg leg_prefix="right_front" reflect="false" leg_number="front"/>
+  <xacro:macros.leg leg_prefix="right_central" reflect="false" leg_number="central"/>
+  <xacro:macros.leg leg_prefix="right_rear" reflect="false" leg_number="rear"/>
+
+</robot>

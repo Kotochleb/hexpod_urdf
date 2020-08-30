@@ -1,0 +1,64 @@
+body:
+  name: 'base_link'
+  width: 0.15
+  length: 0.3
+  thickness: 0.08
+  mass: 10
+  inertia: {ixx: 0.2, ixy: 0.2, ixz: 0.2, iyy: 0.2, iyz: 0.2, izz: 0.2}
+
+
+
+servo:
+  velocity: 0.2
+  effort: 0.2
+
+
+
+coax:
+  name: 'coax'
+  link:
+    length: 0.01
+    radius: 0.001
+    mass: 0.2
+    inertia: {ixx: 0.2, ixy: 0.2, ixz: 0.2, iyy: 0.2, iyz: 0.2, izz: 0.2}
+
+  joint:
+    limit:
+      lower: -45
+      upper: +45
+
+    origin: [0 0 -0.01]
+
+
+
+femur:
+  name: 'femur'
+  link:
+    length: 0.2
+    radius: 0.025
+    mass: 0.2
+    inertia: {ixx: 0.2, ixy: 0.2, ixz: 0.2, iyy: 0.2, iyz: 0.2, izz: 0.2}
+
+  joint:
+    limit:
+      lower: -45
+      upper: +45
+
+    origin: [0 0 -0.2]
+
+
+
+tibia:
+  name: 'tibia'
+  link:
+    length: 0.2
+    radius: 0.025
+    mass: 0.2
+    inertia: {ixx: 0.2, ixy: 0.2, ixz: 0.2, iyy: 0.2, iyz: 0.2, izz: 0.2}
+
+  joint:
+    limit:
+      lower: -135
+      upper: +0
+
+    origin: [0 0 -0.2]
