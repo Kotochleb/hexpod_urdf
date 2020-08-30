@@ -27,7 +27,7 @@ coax:
       lower: -45
       upper: +45
 
-    origin: [0 0 -0.01]
+    origin: [0 0 0]
 
 
 
@@ -44,7 +44,7 @@ femur:
       lower: -45
       upper: +45
 
-    origin: [0 0 -0.2]
+    origin: [0 0 -0.01]
 
 
 
