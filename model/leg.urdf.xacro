@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- LEG MACRO -->
-  <xacro:macro name="leg" params="leg_prefix reflect leg_number props_path">
+  <xacro:macro name="leg" params="leg_prefix reflect leg_pos props_path">
 
     <xacro:property name="yaml_file" value="${props_path}" />
     <xacro:property name="robot_props" value="${load_yaml(yaml_file)}" />
@@ -17,15 +17,15 @@
     </xacro:if>
 
 
-    <xacro:if value="${leg_number == 'rear'}">
+    <xacro:if value="${leg_pos == 'rear'}">
       <xacro:property name="leg_pos" value="${-robot_props['body']['length']/2}" scope="parent" />
     </xacro:if>
 
-    <xacro:if value="${leg_number == 'central'}">
+    <xacro:if value="${leg_pos == 'central'}">
       <xacro:property name="leg_pos" value="0" scope="parent" />
     </xacro:if>
 
-    <xacro:if value="${leg_number == 'front'}">
+    <xacro:if value="${leg_pos == 'front'}">
       <xacro:property name="leg_pos" value="${robot_props['body']['length']/2}" scope="parent" />
     </xacro:if>
 
