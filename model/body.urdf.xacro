@@ -10,14 +10,18 @@
     <link name="${props['body']['name']}">
       <visual>
         <geometry>
-          <box size="${props['body']['length']} ${props['body']['width']} ${props['body']['thickness']}" />
+          <box size="${props['body']['length']}
+                     ${props['body']['width']}
+                     ${props['body']['thickness']}" />
         </geometry>
         <origin xyz="0 0 0" />
       </visual>
 
       <collision>
         <geometry>
-          <box size="${props['body']['length']} ${props['body']['width']} ${props['body']['thickness']}" />
+          <box size="${props['body']['length']}
+                     ${props['body']['width']}
+                     ${props['body']['thickness']}" />
         </geometry>
       </collision>
 

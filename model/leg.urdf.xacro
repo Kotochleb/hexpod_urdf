@@ -7,27 +7,13 @@
     <xacro:property name="yaml_file" value="${props_path}" />
     <xacro:property name="robot_props" value="${load_yaml(yaml_file)}" />
 
-    <!-- coditional blocks -->
-    <xacro:if value="${reflect}">
-      <xacro:property name="reflect_multiplier" value="1" scope="parent" />
-    </xacro:if>
+    <!-- CONDITIONAL BLOCKS -->
+    <xacro:if value="${reflect}"> <xacro:property name="reflect_multiplier" value="1" /> </xacro:if>
+    <xacro:if value="${not reflect}"> <xacro:property name="reflect_multiplier" value="-1" />   </xacro:if>
 
-    <xacro:if value="${not reflect}">
-      <xacro:property name="reflect_multiplier" value="-1" scope="parent" />
-    </xacro:if>
-
-
-    <xacro:if value="${leg_pos == 'rear'}">
-      <xacro:property name="leg_pos" value="${-robot_props['body']['length']/2}" scope="parent" />
-    </xacro:if>
-
-    <xacro:if value="${leg_pos == 'central'}">
-      <xacro:property name="leg_pos" value="0" scope="parent" />
-    </xacro:if>
-
-    <xacro:if value="${leg_pos == 'front'}">
-      <xacro:property name="leg_pos" value="${robot_props['body']['length']/2}" scope="parent" />
-    </xacro:if>
+    <xacro:if value="${leg_pos=='rear'}"> <xacro:property name="leg_pos_val" value="${-robot_props['body']['length']/2}" /> </xacro:if>
+    <xacro:if value="${leg_pos=='central'}"> <xacro:property name="leg_pos_val" value="0" /> </xacro:if>
+    <xacro:if value="${leg_pos=='front'}"> <xacro:property name="leg_pos_val" value="${robot_props['body']['length']/2}" /> </xacro:if>
 
 
     <!-- LEG LINK -->
@@ -72,7 +58,7 @@
         <xacro:property name="parent_name" value="${parent['name']}" />
         <xacro:if value="${parent_name == 'base_link'}">
           <parent link="base_link" />
-          <origin xyz="${leg_pos}
+          <origin xyz="${leg_pos_val}
                        ${reflect_multiplier*robot_props['body']['width']/2}
                        0"
                   rpy="${reflect_multiplier*pi/2} 0 0" />
@@ -95,6 +81,21 @@
                velocity="${robot_props['servo']['velocity']}" />
 
       </joint>
+
+      <!-- TRANSMITION DEFINITION -->
+      <transmission name="${leg_prefix}_${parent['name']}_to_${child['name']}_transmition"
+                    type="SimpleTransmission">
+
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="${leg_prefix}_${parent['name']}_to_${child['name']}_joint">
+          <hardwareInterface>EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="${leg_prefix}_${parent['name']}_to_${child['name']}_actuator">
+          <hardwareInterface>EffortJointInterface</hardwareInterface>
+          <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+      </transmission>
+      
     </xacro:macro>
 
     <!-- DEFINE LINKS -->
