@@ -2,31 +2,31 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- LEG MACRO -->
-  <xacro:macro name="leg" params="leg_prefix reflect leg_number">
+  <xacro:macro name="leg" params="leg_prefix reflect leg_number props_path">
 
-    <xacro:property name="yaml_file" value="$(cwd)/config/props.yaml"/>
-    <xacro:property name="robot_props" value="${load_yaml(yaml_file)}"/>
+    <xacro:property name="yaml_file" value="${props_path}" />
+    <xacro:property name="robot_props" value="${load_yaml(yaml_file)}" />
 
     <!-- coditional blocks -->
     <xacro:if value="${reflect}">
-      <xacro:property name="reflect_multiplier" value="1" scope="parent"/>
+      <xacro:property name="reflect_multiplier" value="1" scope="parent" />
     </xacro:if>
 
     <xacro:if value="${not reflect}">
-      <xacro:property name="reflect_multiplier" value="-1" scope="parent"/>
+      <xacro:property name="reflect_multiplier" value="-1" scope="parent" />
     </xacro:if>
 
 
     <xacro:if value="${leg_number == 'rear'}">
-      <xacro:property name="leg_pos" value="${-robot_props['body']['length']/2}" scope="parent"/>
+      <xacro:property name="leg_pos" value="${-robot_props['body']['length']/2}" scope="parent" />
     </xacro:if>
 
     <xacro:if value="${leg_number == 'central'}">
-      <xacro:property name="leg_pos" value="0" scope="parent"/>
+      <xacro:property name="leg_pos" value="0" scope="parent" />
     </xacro:if>
 
     <xacro:if value="${leg_number == 'front'}">
-      <xacro:property name="leg_pos" value="${robot_props['body']['length']/2}" scope="parent"/>
+      <xacro:property name="leg_pos" value="${robot_props['body']['length']/2}" scope="parent" />
     </xacro:if>
 
 
@@ -36,28 +36,28 @@
         <visual>
           <geometry>
             <cylinder length="${props['link']['length']}"
-                      radius="${props['link']['radius']}"/>
+                      radius="${props['link']['radius']}" />
           </geometry>
           <origin xyz="0 0 -${props['link']['length']/2}"
-                  rpy="0 0 ${pi/2}"/>
+                  rpy="0 0 ${pi/2}" />
         </visual>
 
         <collision>
           <geometry>
-            <sphere radius="${props['link']['radius']}"/>
+            <sphere radius="${props['link']['radius']}" />
           </geometry>
           <origin xyz="0 0 -${(props['link']['length']-(props['link']['radius']/2))}"
-                  rpy="0 0 0"/>
+                  rpy="0 0 0" />
         </collision>
 
         <inertial>
-          <mass value="${props['link']['mass']}"/>
+          <mass value="${props['link']['mass']}" />
           <inertia ixx="${props['link']['inertia']['ixx']}"
                    ixy="${props['link']['inertia']['ixy']}"
                    ixz="${props['link']['inertia']['ixz']}"
                    iyy="${props['link']['inertia']['iyy']}"
                    iyz="${props['link']['inertia']['iyz']}"
-                   izz="${props['link']['inertia']['izz']}"/>
+                   izz="${props['link']['inertia']['izz']}" />
         </inertial>
       </link>
     </xacro:macro>
@@ -69,51 +69,51 @@
       <joint name="${leg_prefix}_${parent['name']}_to_${child['name']}_joint"
              type="revolute">
 
-        <xacro:property name="parent_name" value="${parent['name']}"/>
+        <xacro:property name="parent_name" value="${parent['name']}" />
         <xacro:if value="${parent_name == 'base_link'}">
-          <parent link="base_link"/>
+          <parent link="base_link" />
           <origin xyz="${leg_pos}
                        ${reflect_multiplier*robot_props['body']['width']/2}
                        0"
-                  rpy="${reflect_multiplier*pi/2} 0 0"/>
+                  rpy="${reflect_multiplier*pi/2} 0 0" />
         </xacro:if>
 
         <xacro:if value="${not (parent_name == 'base_link')}">
-          <parent link="${leg_prefix}_${parent['name']}"/>
+          <parent link="${leg_prefix}_${parent['name']}" />
           <origin xyz="${child['joint']['origin'][0]}"
-                  rpy="0 0 0"/>
+                  rpy="0 0 0" />
         </xacro:if>
 
-        <child link="${leg_prefix}_${child['name']}"/>
-        <axis xyz="${axis}"/>
+        <child link="${leg_prefix}_${child['name']}" />
+        <axis xyz="${axis}" />
 
-        <xacro:property name="low_lim" value="${child['joint']['limit']['lower']}"/>
-        <xacro:property name="up_lim" value="${child['joint']['limit']['upper']}"/>
+        <xacro:property name="low_lim" value="${child['joint']['limit']['lower']}" />
+        <xacro:property name="up_lim" value="${child['joint']['limit']['upper']}" />
         <limit effort="${robot_props['servo']['effort']}"
                lower="${radians(low_lim)}"
                upper="${radians(up_lim)}"
-               velocity="${robot_props['servo']['velocity']}"/>
+               velocity="${robot_props['servo']['velocity']}" />
 
       </joint>
     </xacro:macro>
 
     <!-- DEFINE LINKS -->
-    <xacro:leg_link props="${robot_props['coxa']}"/>
-    <xacro:leg_link props="${robot_props['femur']}"/>
-    <xacro:leg_link props="${robot_props['tibia']}"/>
+    <xacro:leg_link props="${robot_props['coxa']}" />
+    <xacro:leg_link props="${robot_props['femur']}" />
+    <xacro:leg_link props="${robot_props['tibia']}" />
 
     <!-- DEFINE JOINTS -->
     <xacro:leg_joint parent="${robot_props['body']}"
                      child="${robot_props['coxa']}"
-                     axis="0 -1 0"/>
+                     axis="0 -1 0" />
 
     <xacro:leg_joint parent="${robot_props['coxa']}"
                      child="${robot_props['femur']}"
-                     axis="${reflect_multiplier*1} 0 0"/>
+                     axis="${reflect_multiplier*1} 0 0" />
 
     <xacro:leg_joint parent="${robot_props['femur']}"
                      child="${robot_props['tibia']}"
-                     axis="${reflect_multiplier*1} 0 0"/>
+                     axis="${reflect_multiplier*1} 0 0" />
 
   </xacro:macro>
 

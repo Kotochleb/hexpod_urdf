@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<robot name="the_Walking_thread" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="hexapod" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:arg name="props_path" default="$(cwd)/config/props.yaml" />
 
   <!-- BODY DEFINITION -->
-  <xacro:include filename="$(cwd)/model/body.urdf.xacro" ns="macros"/>
-  <xacro:macros.body/>
+  <xacro:include filename="$(cwd)/model/body.urdf.xacro" ns="body" />
+  <xacro:body.body props_path="$(arg props_path)" />
 
   <!-- LED DEFINITION -->
-  <xacro:include filename="$(cwd)/model/leg.urdf.xacro" ns="macros"/>
+  <xacro:include filename="$(cwd)/model/leg.urdf.xacro" ns="leg" />
 
-  <xacro:macros.leg leg_prefix="left_front" reflect="true" leg_number="front"/>
-  <xacro:macros.leg leg_prefix="left_central" reflect="true" leg_number="central"/>
-  <xacro:macros.leg leg_prefix="left_rear" reflect="true" leg_number="rear"/>
+  <xacro:leg.leg leg_prefix="left_front" reflect="true" leg_number="front" props_path="$(arg props_path)" />
+  <xacro:leg.leg leg_prefix="left_central" reflect="true" leg_number="central" props_path="$(arg props_path)" />
+  <xacro:leg.leg leg_prefix="left_rear" reflect="true" leg_number="rear" props_path="$(arg props_path)" />
 
 
-  <xacro:macros.leg leg_prefix="right_front" reflect="false" leg_number="front"/>
-  <xacro:macros.leg leg_prefix="right_central" reflect="false" leg_number="central"/>
-  <xacro:macros.leg leg_prefix="right_rear" reflect="false" leg_number="rear"/>
+  <xacro:leg.leg leg_prefix="right_front" reflect="false" leg_number="front" props_path="$(arg props_path)" />
+  <xacro:leg.leg leg_prefix="right_central" reflect="false" leg_number="central" props_path="$(arg props_path)" />
+  <xacro:leg.leg leg_prefix="right_rear" reflect="false" leg_number="rear" props_path="$(arg props_path)" />
 
 </robot>
