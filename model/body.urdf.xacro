@@ -10,29 +10,38 @@
     <link name="${props['body']['name']}">
       <visual>
         <geometry>
-          <box size="${props['body']['length']}
-                     ${props['body']['width']}
-                     ${props['body']['thickness']}" />
+          <xacro:property name="mesh_file" value="${props['body']['link']['mesh_file']}" />
+          <xacro:if value="${mesh_file == 'None'}">
+            <box size="${props['body']['link']['length']}
+                       ${props['body']['link']['width']}
+                       ${props['body']['link']['thickness']}" />
+          </xacro:if>
+          <xacro:if value="${mesh_file != 'None'}">
+            <mesh filename="${mesh_file}" />
+          </xacro:if>
         </geometry>
-        <origin xyz="0 0 0" />
+        <origin xyz="0 0 0"
+                rpy="${props['body']['link']['rpy'][0]}"/>
       </visual>
 
       <collision>
         <geometry>
-          <box size="${props['body']['length']}
-                     ${props['body']['width']}
-                     ${props['body']['thickness']}" />
+          <box size="${props['body']['link']['length']}
+                     ${props['body']['link']['width']}
+                     ${props['body']['link']['thickness']}" />
         </geometry>
       </collision>
 
       <inertial>
-        <mass value="${props['body']['mass']}" />
-        <inertia ixx="${props['body']['inertia']['ixx']}"
-                 ixy="${props['body']['inertia']['ixy']}"
-                 ixz="${props['body']['inertia']['ixz']}"
-                 iyy="${props['body']['inertia']['iyy']}"
-                 iyz="${props['body']['inertia']['iyz']}"
-                 izz="${props['body']['inertia']['izz']}" />
+        <mass value="${props['body']['inertial']['mass']}" />
+        <inertia ixx="${props['body']['inertial']['inertia']['ixx']}"
+                 ixy="${props['body']['inertial']['inertia']['ixy']}"
+                 ixz="${props['body']['inertial']['inertia']['ixz']}"
+                 iyy="${props['body']['inertial']['inertia']['iyy']}"
+                 iyz="${props['body']['inertial']['inertia']['iyz']}"
+                 izz="${props['body']['inertial']['inertia']['izz']}" />
+         <origin xyz="${props['body']['inertial']['origin'][0]}"
+                 rpy="0 0 0" />
       </inertial>
     </link>
   </xacro:macro>

@@ -7,77 +7,78 @@
   <link name="base_link">
     <visual>
       <geometry>
-        <box size="0.3                      0.15                      0.08"/>
+        <box size="0.3618                        0.136                        0.052"/>
       </geometry>
-      <origin xyz="0 0 0"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
     </visual>
     <collision>
       <geometry>
-        <box size="0.3                      0.15                      0.08"/>
+        <box size="0.3618                      0.136                      0.052"/>
       </geometry>
     </collision>
     <inertial>
-      <mass value="10"/>
+      <mass value="0.12138"/>
       <inertia ixx="0.2" ixy="0.2" ixz="0.2" iyy="0.2" iyz="0.2" izz="0.2"/>
+      <!-- <origin rpy="0 0 0" xyz="0 0 0"/> -->
     </inertial>
   </link>
   <link name="left_front_coxa">
     <visual>
       <geometry>
-        <cylinder length="0.01" radius="0.001"/>
+        <cylinder length="0.036" radius="0.016"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.005"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.018"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.001"/>
+        <sphere radius="0.016"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.0095"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.028"/>
     </collision>
     <inertial>
-      <mass value="0.2"/>
+      <mass value="0.12138"/>
       <inertia ixx="0.2" ixy="0.2" ixz="0.2" iyy="0.2" iyz="0.2" izz="0.2"/>
     </inertial>
   </link>
   <link name="left_front_femur">
     <visual>
       <geometry>
-        <cylinder length="0.2" radius="0.025"/>
+        <cylinder length="0.055" radius="0.02"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.1"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.0275"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.025"/>
+        <sphere radius="0.02"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.1875"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.045"/>
     </collision>
     <inertial>
-      <mass value="0.2"/>
+      <mass value="0.02696"/>
       <inertia ixx="0.2" ixy="0.2" ixz="0.2" iyy="0.2" iyz="0.2" izz="0.2"/>
     </inertial>
   </link>
   <link name="left_front_tibia">
     <visual>
       <geometry>
-        <cylinder length="0.2" radius="0.025"/>
+        <cylinder length="0.1633" radius="0.13"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.1"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.08165"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.025"/>
+        <sphere radius="0.13"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.1875"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.0983"/>
     </collision>
     <inertial>
-      <mass value="0.2"/>
+      <mass value="0.08473"/>
       <inertia ixx="0.2" ixy="0.2" ixz="0.2" iyy="0.2" iyz="0.2" izz="0.2"/>
     </inertial>
   </link>
   <joint name="left_front_base_link_to_coxa_joint" type="revolute">
     <parent link="base_link"/>
-    <origin rpy="1.57079632679 0 0" xyz="0.15                        0.075                        0"/>
+    <origin rpy="1.57079632679 0 0" xyz="0.1809                        0.068                        0"/>
     <child link="left_front_coxa"/>
     <axis xyz="0 -1 0"/>
     <limit effort="0.2" lower="-0.785398163397" upper="0.785398163397" velocity="0.2"/>
@@ -132,60 +133,60 @@
   <link name="left_central_coxa">
     <visual>
       <geometry>
-        <cylinder length="0.01" radius="0.001"/>
+        <cylinder length="0.036" radius="0.016"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.005"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.018"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.001"/>
+        <sphere radius="0.016"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.0095"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.028"/>
     </collision>
     <inertial>
-      <mass value="0.2"/>
+      <mass value="0.12138"/>
       <inertia ixx="0.2" ixy="0.2" ixz="0.2" iyy="0.2" iyz="0.2" izz="0.2"/>
     </inertial>
   </link>
   <link name="left_central_femur">
     <visual>
       <geometry>
-        <cylinder length="0.2" radius="0.025"/>
+        <cylinder length="0.055" radius="0.02"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.1"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.0275"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.025"/>
+        <sphere radius="0.02"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.1875"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.045"/>
     </collision>
     <inertial>
-      <mass value="0.2"/>
+      <mass value="0.02696"/>
       <inertia ixx="0.2" ixy="0.2" ixz="0.2" iyy="0.2" iyz="0.2" izz="0.2"/>
     </inertial>
   </link>
   <link name="left_central_tibia">
     <visual>
       <geometry>
-        <cylinder length="0.2" radius="0.025"/>
+        <cylinder length="0.1633" radius="0.13"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.1"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.08165"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.025"/>
+        <sphere radius="0.13"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.1875"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.0983"/>
     </collision>
     <inertial>
-      <mass value="0.2"/>
+      <mass value="0.08473"/>
       <inertia ixx="0.2" ixy="0.2" ixz="0.2" iyy="0.2" iyz="0.2" izz="0.2"/>
     </inertial>
   </link>
   <joint name="left_central_base_link_to_coxa_joint" type="revolute">
     <parent link="base_link"/>
-    <origin rpy="1.57079632679 0 0" xyz="0                        0.075                        0"/>
+    <origin rpy="1.57079632679 0 0" xyz="0                        0.068                        0"/>
     <child link="left_central_coxa"/>
     <axis xyz="0 -1 0"/>
     <limit effort="0.2" lower="-0.785398163397" upper="0.785398163397" velocity="0.2"/>
@@ -240,60 +241,60 @@
   <link name="left_rear_coxa">
     <visual>
       <geometry>
-        <cylinder length="0.01" radius="0.001"/>
+        <cylinder length="0.036" radius="0.016"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.005"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.018"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.001"/>
+        <sphere radius="0.016"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.0095"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.028"/>
     </collision>
     <inertial>
-      <mass value="0.2"/>
+      <mass value="0.12138"/>
       <inertia ixx="0.2" ixy="0.2" ixz="0.2" iyy="0.2" iyz="0.2" izz="0.2"/>
     </inertial>
   </link>
   <link name="left_rear_femur">
     <visual>
       <geometry>
-        <cylinder length="0.2" radius="0.025"/>
+        <cylinder length="0.055" radius="0.02"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.1"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.0275"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.025"/>
+        <sphere radius="0.02"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.1875"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.045"/>
     </collision>
     <inertial>
-      <mass value="0.2"/>
+      <mass value="0.02696"/>
       <inertia ixx="0.2" ixy="0.2" ixz="0.2" iyy="0.2" iyz="0.2" izz="0.2"/>
     </inertial>
   </link>
   <link name="left_rear_tibia">
     <visual>
       <geometry>
-        <cylinder length="0.2" radius="0.025"/>
+        <cylinder length="0.1633" radius="0.13"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.1"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.08165"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.025"/>
+        <sphere radius="0.13"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.1875"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.0983"/>
     </collision>
     <inertial>
-      <mass value="0.2"/>
+      <mass value="0.08473"/>
       <inertia ixx="0.2" ixy="0.2" ixz="0.2" iyy="0.2" iyz="0.2" izz="0.2"/>
     </inertial>
   </link>
   <joint name="left_rear_base_link_to_coxa_joint" type="revolute">
     <parent link="base_link"/>
-    <origin rpy="1.57079632679 0 0" xyz="-0.15                        0.075                        0"/>
+    <origin rpy="1.57079632679 0 0" xyz="-0.1809                        0.068                        0"/>
     <child link="left_rear_coxa"/>
     <axis xyz="0 -1 0"/>
     <limit effort="0.2" lower="-0.785398163397" upper="0.785398163397" velocity="0.2"/>
@@ -348,60 +349,60 @@
   <link name="right_front_coxa">
     <visual>
       <geometry>
-        <cylinder length="0.01" radius="0.001"/>
+        <cylinder length="0.036" radius="0.016"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.005"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.018"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.001"/>
+        <sphere radius="0.016"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.0095"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.028"/>
     </collision>
     <inertial>
-      <mass value="0.2"/>
+      <mass value="0.12138"/>
       <inertia ixx="0.2" ixy="0.2" ixz="0.2" iyy="0.2" iyz="0.2" izz="0.2"/>
     </inertial>
   </link>
   <link name="right_front_femur">
     <visual>
       <geometry>
-        <cylinder length="0.2" radius="0.025"/>
+        <cylinder length="0.055" radius="0.02"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.1"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.0275"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.025"/>
+        <sphere radius="0.02"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.1875"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.045"/>
     </collision>
     <inertial>
-      <mass value="0.2"/>
+      <mass value="0.02696"/>
       <inertia ixx="0.2" ixy="0.2" ixz="0.2" iyy="0.2" iyz="0.2" izz="0.2"/>
     </inertial>
   </link>
   <link name="right_front_tibia">
     <visual>
       <geometry>
-        <cylinder length="0.2" radius="0.025"/>
+        <cylinder length="0.1633" radius="0.13"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.1"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.08165"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.025"/>
+        <sphere radius="0.13"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.1875"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.0983"/>
     </collision>
     <inertial>
-      <mass value="0.2"/>
+      <mass value="0.08473"/>
       <inertia ixx="0.2" ixy="0.2" ixz="0.2" iyy="0.2" iyz="0.2" izz="0.2"/>
     </inertial>
   </link>
   <joint name="right_front_base_link_to_coxa_joint" type="revolute">
     <parent link="base_link"/>
-    <origin rpy="-1.57079632679 0 0" xyz="0.15                        -0.075                        0"/>
+    <origin rpy="-1.57079632679 0 0" xyz="0.1809                        -0.068                        0"/>
     <child link="right_front_coxa"/>
     <axis xyz="0 -1 0"/>
     <limit effort="0.2" lower="-0.785398163397" upper="0.785398163397" velocity="0.2"/>
@@ -456,60 +457,60 @@
   <link name="right_central_coxa">
     <visual>
       <geometry>
-        <cylinder length="0.01" radius="0.001"/>
+        <cylinder length="0.036" radius="0.016"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.005"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.018"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.001"/>
+        <sphere radius="0.016"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.0095"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.028"/>
     </collision>
     <inertial>
-      <mass value="0.2"/>
+      <mass value="0.12138"/>
       <inertia ixx="0.2" ixy="0.2" ixz="0.2" iyy="0.2" iyz="0.2" izz="0.2"/>
     </inertial>
   </link>
   <link name="right_central_femur">
     <visual>
       <geometry>
-        <cylinder length="0.2" radius="0.025"/>
+        <cylinder length="0.055" radius="0.02"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.1"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.0275"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.025"/>
+        <sphere radius="0.02"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.1875"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.045"/>
     </collision>
     <inertial>
-      <mass value="0.2"/>
+      <mass value="0.02696"/>
       <inertia ixx="0.2" ixy="0.2" ixz="0.2" iyy="0.2" iyz="0.2" izz="0.2"/>
     </inertial>
   </link>
   <link name="right_central_tibia">
     <visual>
       <geometry>
-        <cylinder length="0.2" radius="0.025"/>
+        <cylinder length="0.1633" radius="0.13"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.1"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.08165"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.025"/>
+        <sphere radius="0.13"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.1875"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.0983"/>
     </collision>
     <inertial>
-      <mass value="0.2"/>
+      <mass value="0.08473"/>
       <inertia ixx="0.2" ixy="0.2" ixz="0.2" iyy="0.2" iyz="0.2" izz="0.2"/>
     </inertial>
   </link>
   <joint name="right_central_base_link_to_coxa_joint" type="revolute">
     <parent link="base_link"/>
-    <origin rpy="-1.57079632679 0 0" xyz="0                        -0.075                        0"/>
+    <origin rpy="-1.57079632679 0 0" xyz="0                        -0.068                        0"/>
     <child link="right_central_coxa"/>
     <axis xyz="0 -1 0"/>
     <limit effort="0.2" lower="-0.785398163397" upper="0.785398163397" velocity="0.2"/>
@@ -564,60 +565,60 @@
   <link name="right_rear_coxa">
     <visual>
       <geometry>
-        <cylinder length="0.01" radius="0.001"/>
+        <cylinder length="0.036" radius="0.016"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.005"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.018"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.001"/>
+        <sphere radius="0.016"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.0095"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.028"/>
     </collision>
     <inertial>
-      <mass value="0.2"/>
+      <mass value="0.12138"/>
       <inertia ixx="0.2" ixy="0.2" ixz="0.2" iyy="0.2" iyz="0.2" izz="0.2"/>
     </inertial>
   </link>
   <link name="right_rear_femur">
     <visual>
       <geometry>
-        <cylinder length="0.2" radius="0.025"/>
+        <cylinder length="0.055" radius="0.02"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.1"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.0275"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.025"/>
+        <sphere radius="0.02"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.1875"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.045"/>
     </collision>
     <inertial>
-      <mass value="0.2"/>
+      <mass value="0.02696"/>
       <inertia ixx="0.2" ixy="0.2" ixz="0.2" iyy="0.2" iyz="0.2" izz="0.2"/>
     </inertial>
   </link>
   <link name="right_rear_tibia">
     <visual>
       <geometry>
-        <cylinder length="0.2" radius="0.025"/>
+        <cylinder length="0.1633" radius="0.13"/>
       </geometry>
-      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.1"/>
+      <origin rpy="0 0 1.57079632679" xyz="0 0 -0.08165"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.025"/>
+        <sphere radius="0.13"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.1875"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.0983"/>
     </collision>
     <inertial>
-      <mass value="0.2"/>
+      <mass value="0.08473"/>
       <inertia ixx="0.2" ixy="0.2" ixz="0.2" iyy="0.2" iyz="0.2" izz="0.2"/>
     </inertial>
   </link>
   <joint name="right_rear_base_link_to_coxa_joint" type="revolute">
     <parent link="base_link"/>
-    <origin rpy="-1.57079632679 0 0" xyz="-0.15                        -0.075                        0"/>
+    <origin rpy="-1.57079632679 0 0" xyz="-0.1809                        -0.068                        0"/>
     <child link="right_rear_coxa"/>
     <axis xyz="0 -1 0"/>
     <limit effort="0.2" lower="-0.785398163397" upper="0.785398163397" velocity="0.2"/>
@@ -670,4 +671,3 @@
     </actuator>
   </transmission>
 </robot>
-

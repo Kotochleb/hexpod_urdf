@@ -11,9 +11,9 @@
     <xacro:if value="${reflect}"> <xacro:property name="reflect_multiplier" value="1" /> </xacro:if>
     <xacro:if value="${not reflect}"> <xacro:property name="reflect_multiplier" value="-1" />   </xacro:if>
 
-    <xacro:if value="${leg_pos=='rear'}"> <xacro:property name="leg_pos_val" value="${-robot_props['body']['length']/2}" /> </xacro:if>
+    <xacro:if value="${leg_pos=='rear'}"> <xacro:property name="leg_pos_val" value="${-robot_props['body']['link']['length']/2}" /> </xacro:if>
     <xacro:if value="${leg_pos=='central'}"> <xacro:property name="leg_pos_val" value="0" /> </xacro:if>
-    <xacro:if value="${leg_pos=='front'}"> <xacro:property name="leg_pos_val" value="${robot_props['body']['length']/2}" /> </xacro:if>
+    <xacro:if value="${leg_pos=='front'}"> <xacro:property name="leg_pos_val" value="${robot_props['body']['link']['length']/2}" /> </xacro:if>
 
 
     <!-- LEG LINK -->
@@ -37,13 +37,13 @@
         </collision>
 
         <inertial>
-          <mass value="${props['link']['mass']}" />
-          <inertia ixx="${props['link']['inertia']['ixx']}"
-                   ixy="${props['link']['inertia']['ixy']}"
-                   ixz="${props['link']['inertia']['ixz']}"
-                   iyy="${props['link']['inertia']['iyy']}"
-                   iyz="${props['link']['inertia']['iyz']}"
-                   izz="${props['link']['inertia']['izz']}" />
+          <mass value="${props['inertial']['mass']}" />
+          <inertia ixx="${props['inertial']['inertia']['ixx']}"
+                   ixy="${props['inertial']['inertia']['ixy']}"
+                   ixz="${props['inertial']['inertia']['ixz']}"
+                   iyy="${props['inertial']['inertia']['iyy']}"
+                   iyz="${props['inertial']['inertia']['iyz']}"
+                   izz="${props['inertial']['inertia']['izz']}" />
         </inertial>
       </link>
     </xacro:macro>
@@ -59,7 +59,7 @@
         <xacro:if value="${parent_name == 'base_link'}">
           <parent link="base_link" />
           <origin xyz="${leg_pos_val}
-                       ${reflect_multiplier*robot_props['body']['width']/2}
+                       ${reflect_multiplier*robot_props['body']['link']['width']/2}
                        0"
                   rpy="${reflect_multiplier*pi/2} 0 0" />
         </xacro:if>
@@ -95,7 +95,7 @@
           <mechanicalReduction>1</mechanicalReduction>
         </actuator>
       </transmission>
-      
+
     </xacro:macro>
 
     <!-- DEFINE LINKS -->
