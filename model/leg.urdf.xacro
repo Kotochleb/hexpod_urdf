@@ -11,9 +11,9 @@
     <xacro:if value="${reflect}"> <xacro:property name="reflect_multiplier" value="1" /> </xacro:if>
     <xacro:if value="${not reflect}"> <xacro:property name="reflect_multiplier" value="-1" />   </xacro:if>
 
-    <xacro:if value="${leg_pos=='rear'}"> <xacro:property name="leg_pos_val" value="${-robot_props['body']['length']/2}" /> </xacro:if>
+    <xacro:if value="${leg_pos=='rear'}"> <xacro:property name="leg_pos_val" value="${-robot_props['body']['link']['length']/2}" /> </xacro:if>
     <xacro:if value="${leg_pos=='central'}"> <xacro:property name="leg_pos_val" value="0" /> </xacro:if>
-    <xacro:if value="${leg_pos=='front'}"> <xacro:property name="leg_pos_val" value="${robot_props['body']['length']/2}" /> </xacro:if>
+    <xacro:if value="${leg_pos=='front'}"> <xacro:property name="leg_pos_val" value="${robot_props['body']['link']['length']/2}" /> </xacro:if>
 
 
     <!-- LEG LINK -->
@@ -21,11 +21,26 @@
       <link name="${leg_prefix}_${props['name']}">
         <visual>
           <geometry>
-            <cylinder length="${props['link']['length']}"
-                      radius="${props['link']['radius']}" />
+            <xacro:property name="mesh_file" value="${props['link']['mesh_file']}" />
+            <xacro:if value="${mesh_file == 'None'}">
+              <cylinder length="${props['link']['length']}"
+                        radius="${props['link']['radius']}" />
+            </xacro:if>
+            <xacro:if value="${mesh_file != 'None'}">
+              <mesh filename="${mesh_file}" scale="1 1 1" />
+            </xacro:if>
           </geometry>
-          <origin xyz="0 0 -${props['link']['length']/2}"
-                  rpy="0 0 ${pi/2}" />
+
+          <xacro:property name="mesh_file" value="${props['link']['mesh_file']}" />
+          <xacro:if value="${mesh_file == 'None'}">
+            <origin xyz="0 0 -${props['link']['length']/2}"
+                    rpy="0 0 0" />
+          </xacro:if>
+          <xacro:if value="${mesh_file != 'None'}">
+            <mesh filename="${mesh_file}" scale="1 1 1" />
+            <origin xyz="0 0 -${props['link']['length']/2}"
+                    rpy="${pi/2} 0 0" />
+          </xacro:if>
         </visual>
 
         <collision>
@@ -37,13 +52,13 @@
         </collision>
 
         <inertial>
-          <mass value="${props['link']['mass']}" />
-          <inertia ixx="${props['link']['inertia']['ixx']}"
-                   ixy="${props['link']['inertia']['ixy']}"
-                   ixz="${props['link']['inertia']['ixz']}"
-                   iyy="${props['link']['inertia']['iyy']}"
-                   iyz="${props['link']['inertia']['iyz']}"
-                   izz="${props['link']['inertia']['izz']}" />
+          <mass value="${props['inertia']['mass']}" />
+          <inertia ixx="${props['inertia']['inertia']['ixx']}"
+                   ixy="${props['inertia']['inertia']['ixy']}"
+                   ixz="${props['inertia']['inertia']['ixz']}"
+                   iyy="${props['inertia']['inertia']['iyy']}"
+                   iyz="${props['inertia']['inertia']['iyz']}"
+                   izz="${props['inertia']['inertia']['izz']}" />
         </inertial>
       </link>
     </xacro:macro>
@@ -59,14 +74,15 @@
         <xacro:if value="${parent_name == 'base_link'}">
           <parent link="base_link" />
           <origin xyz="${leg_pos_val}
-                       ${reflect_multiplier*robot_props['body']['width']/2}
+                       ${reflect_multiplier*robot_props['body']['link']['width']/2}
                        0"
-                  rpy="${reflect_multiplier*pi/2} 0 0" />
+                  rpy="${-pi/2} 0 ${reflect_multiplier*pi/2+pi/2}" />
         </xacro:if>
+        <!-- ${reflect_multiplier*pi/2} -->
 
         <xacro:if value="${not (parent_name == 'base_link')}">
           <parent link="${leg_prefix}_${parent['name']}" />
-          <origin xyz="${child['joint']['origin'][0]}"
+          <origin xyz="${parent['joint']['origin'][0]}"
                   rpy="0 0 0" />
         </xacro:if>
 
@@ -106,15 +122,15 @@
     <!-- DEFINE JOINTS -->
     <xacro:leg_joint parent="${robot_props['body']}"
                      child="${robot_props['coxa']}"
-                     axis="0 -1 0" />
+                     axis="0 ${reflect_multiplier*1} 0" />
 
     <xacro:leg_joint parent="${robot_props['coxa']}"
                      child="${robot_props['femur']}"
-                     axis="${reflect_multiplier*1} 0 0" />
+                     axis="1 0 0" />
 
     <xacro:leg_joint parent="${robot_props['femur']}"
                      child="${robot_props['tibia']}"
-                     axis="${reflect_multiplier*1} 0 0" />
+                     axis="1 0 0" />
 
   </xacro:macro>
 

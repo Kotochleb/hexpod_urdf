@@ -4,8 +4,8 @@ body:
     width: 0.136
     length: 0.3618
     thickness: 0.052
-    # mesh_file : 'stl/the_walking_thread/frame.stl'
-    mesh_file: 'None'
+    mesh_file : 'stl/the_walking_thread/frame.stl'
+    # mesh_file: 'None'
   inertia:
     mass: 0.12138
     inertia: {ixx: 0.2, ixy: 0.2, ixz: 0.2, iyy: 0.2, iyz: 0.2, izz: 0.2}
@@ -23,10 +23,10 @@ servo:
 coxa:
   name: 'coxa'
   link:
-    length: 0.01
-    radius: 0.001
-    # mesh_file : 'stl/the_walking_thread/frame.stl'
-    mesh_file: 'None'
+    length: 0.036
+    radius: 0.02
+    mesh_file : 'stl/the_walking_thread/coxa.stl'
+    # mesh_file: 'None'
   inertia:
     mass: 0.12138
     inertia: {ixx: 0.2, ixy: 0.2, ixz: 0.2, iyy: 0.2, iyz: 0.2, izz: 0.2}
@@ -36,17 +36,17 @@ coxa:
     limit:
       lower: -45
       upper: +45
-    origin: [0 0 0]
+    origin: [0 -0.01730 -0.036]
 
 
 
 femur:
   name: 'femur'
   link:
-    length: 0.01
-    radius: 0.001
-    # mesh_file : 'stl/the_walking_thread/frame.stl'
-    mesh_file: 'None'
+    length: 0.055
+    radius: 0.02
+    mesh_file : 'stl/the_walking_thread/femur.stl'
+    # mesh_file: 'None'
   inertia:
     mass: 0.12138
     inertia: {ixx: 0.2, ixy: 0.2, ixz: 0.2, iyy: 0.2, iyz: 0.2, izz: 0.2}
@@ -57,17 +57,17 @@ femur:
       lower: -45
       upper: +45
 
-    origin: [0 0 -0.01]
+    origin: [0 0 -0.055]
 
 
 
 tibia:
   name: 'tibia'
   link:
-    length: 0.01
-    radius: 0.001
-    # mesh_file : 'stl/the_walking_thread/frame.stl'
-    mesh_file: 'None'
+    length: 0.1633
+    radius: 0.0065
+    mesh_file : 'stl/the_walking_thread/tibia.stl'
+    # mesh_file: 'None'
   inertia:
     mass: 0.12138
     inertia: {ixx: 0.2, ixy: 0.2, ixz: 0.2, iyy: 0.2, iyz: 0.2, izz: 0.2}
@@ -75,7 +75,7 @@ tibia:
 
   joint:
     limit:
-      lower: -135
-      upper: +0
+      lower: +0
+      upper: +135
 
-    origin: [0 0 -0.2]
+    origin: [0 0 0]
