@@ -17,11 +17,16 @@
                        ${props['body']['link']['thickness']}" />
           </xacro:if>
           <xacro:if value="${mesh_file != 'None'}">
-            <mesh filename="${mesh_file}" />
+            <mesh filename="${mesh_file}" scale="1 1 1" />
           </xacro:if>
+          <!-- <material name="${props['body']['link']['material']}"/> -->
         </geometry>
-        <origin xyz="0 0 0"
-                rpy="${props['body']['link']['rpy'][0]}"/>
+        <origin xyz="${props['body']['link']['origin'][0]}
+                     ${props['body']['link']['origin'][1]}
+                     ${props['body']['link']['origin'][2]}"
+                rpy="${props['body']['link']['rpy'][0]}
+                     ${props['body']['link']['rpy'][1]}
+                     ${props['body']['link']['rpy'][2]}"/>
       </visual>
 
       <collision>
@@ -40,7 +45,9 @@
                  iyy="${props['body']['inertial']['inertia']['iyy']}"
                  iyz="${props['body']['inertial']['inertia']['iyz']}"
                  izz="${props['body']['inertial']['inertia']['izz']}" />
-         <origin xyz="${props['body']['inertial']['origin'][0]}"
+         <origin xyz="${props['body']['inertial']['origin'][0]}
+                      ${props['body']['inertial']['origin'][1]}
+                      ${props['body']['inertial']['origin'][2]}"
                  rpy="0 0 0" />
       </inertial>
     </link>

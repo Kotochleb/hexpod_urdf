@@ -4,6 +4,8 @@ body:
     width: 0.136
     length: 0.3618
     thickness: 0.052
+    # mesh_file : 'stl/the_walking_thread/frame.stl'
+    mesh_file: 'None'
   inertia:
     mass: 0.12138
     inertia: {ixx: 0.2, ixy: 0.2, ixz: 0.2, iyy: 0.2, iyz: 0.2, izz: 0.2}
@@ -12,8 +14,9 @@ body:
 
 
 servo:
-  velocity: 0.2
-  effort: 0.2
+  velocity: 0.003141593
+  effort: 0.5295591
+
 
 
 
@@ -22,6 +25,8 @@ coxa:
   link:
     length: 0.01
     radius: 0.001
+    # mesh_file : 'stl/the_walking_thread/frame.stl'
+    mesh_file: 'None'
   inertia:
     mass: 0.12138
     inertia: {ixx: 0.2, ixy: 0.2, ixz: 0.2, iyy: 0.2, iyz: 0.2, izz: 0.2}
@@ -40,6 +45,8 @@ femur:
   link:
     length: 0.01
     radius: 0.001
+    # mesh_file : 'stl/the_walking_thread/frame.stl'
+    mesh_file: 'None'
   inertia:
     mass: 0.12138
     inertia: {ixx: 0.2, ixy: 0.2, ixz: 0.2, iyy: 0.2, iyz: 0.2, izz: 0.2}
@@ -59,6 +66,8 @@ tibia:
   link:
     length: 0.01
     radius: 0.001
+    # mesh_file : 'stl/the_walking_thread/frame.stl'
+    mesh_file: 'None'
   inertia:
     mass: 0.12138
     inertia: {ixx: 0.2, ixy: 0.2, ixz: 0.2, iyy: 0.2, iyz: 0.2, izz: 0.2}

@@ -1,7 +1,7 @@
 
 <launch>
 
-  <arg name="model" default="/home/krzysiek/Documents/Programing/Integra/The_walking_thread/urdf_model/robot.urdf"/>
+  <arg name="model" default="/home/krzysiek/Documents/Programing/Integra/The_walking_thread/urdf/robot.urdf"/>
   <arg name="gui" default="true" />
   <arg name="rvizconfig" default="$(find urdf_tutorial)/rviz/urdf.rviz" />
 

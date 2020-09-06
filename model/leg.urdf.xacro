@@ -8,8 +8,8 @@
     <xacro:property name="robot_props" value="${load_yaml(yaml_file)}" />
 
     <!-- CONDITIONAL BLOCKS -->
-    <xacro:if value="${reflect}"> <xacro:property name="reflect_multiplier" value="1" /> </xacro:if>
-    <xacro:if value="${not reflect}"> <xacro:property name="reflect_multiplier" value="-1" />   </xacro:if>
+    <xacro:if value="${reflect}"> <xacro:property name="reflect_multiplier" value="-1" /> </xacro:if>
+    <xacro:if value="${not reflect}"> <xacro:property name="reflect_multiplier" value="1" />   </xacro:if>
 
     <xacro:if value="${leg_pos=='rear'}"> <xacro:property name="leg_pos_val" value="${-robot_props['body']['link']['length']/2}" /> </xacro:if>
     <xacro:if value="${leg_pos=='central'}"> <xacro:property name="leg_pos_val" value="0" /> </xacro:if>
@@ -21,11 +21,34 @@
       <link name="${leg_prefix}_${props['name']}">
         <visual>
           <geometry>
-            <cylinder length="${props['link']['length']}"
-                      radius="${props['link']['radius']}" />
+            <xacro:property name="mesh_file" value="${props['link']['mesh_file']}" />
+            <xacro:if value="${mesh_file == 'None'}">
+              <cylinder length="${props['link']['length']}"
+                        radius="${props['link']['radius']}" />
+            </xacro:if>
+            <xacro:if value="${mesh_file != 'None'}">
+              <mesh filename="${mesh_file}" scale="1 1 1" />
+            </xacro:if>
+            <!-- <material name="${props['link']['material']}"/> -->
           </geometry>
-          <origin xyz="0 0 -${props['link']['length']/2}"
-                  rpy="0 0 ${pi/2}" />
+
+          <xacro:property name="props_name" value="${props['name']}" />
+          <xacro:if value="${props_name == 'coxa'}">
+            <origin rpy="${props['link']['rpy'][0]}
+                         ${props['link']['rpy'][1]}
+                         ${props['link']['rpy'][2]}"
+                    xyz="${props['link']['origin'][0]}
+                         ${props['link']['origin'][1]*reflect_multiplier}
+                         ${props['link']['origin'][2]}"/>
+          </xacro:if>
+          <xacro:if value="${props_name != 'coxa'}">
+            <origin xyz="${props['link']['origin'][0]}
+                         ${props['link']['origin'][1]}
+                         ${props['link']['origin'][2]}"
+                    rpy="${props['link']['rpy'][0]}
+                         ${props['link']['rpy'][1]}
+                         ${props['link']['rpy'][2]}"/>
+          </xacro:if>
         </visual>
 
         <collision>
@@ -66,7 +89,9 @@
 
         <xacro:if value="${not (parent_name == 'base_link')}">
           <parent link="${leg_prefix}_${parent['name']}" />
-          <origin xyz="${child['joint']['origin'][0]}"
+          <origin xyz="${child['joint']['origin'][0]}
+                       ${child['joint']['origin'][1]}
+                       ${child['joint']['origin'][2]}"
                   rpy="0 0 0" />
         </xacro:if>
 
