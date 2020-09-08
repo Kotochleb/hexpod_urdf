@@ -5,7 +5,6 @@ body:
     length: 0.3618
     thickness: 0.0525
     mesh_file : 'stl/the_walking_thread/frame.stl'
-    # mesh_file: 'None'
   inertia:
     mass: 0.209677
     inertia: {ixx: 0.00022432, ixy: 0.00, ixz: 0.00, iyy: 0.0041164, iyz: 0.00, izz: 0.00422412}
@@ -46,7 +45,6 @@ femur:
     length: 0.057
     radius: 0.02
     mesh_file : 'stl/the_walking_thread/femur.stl'
-    # mesh_file: 'None'
   inertia:
     mass: 0.02748837
     inertia: {ixx: 0.00001094, ixy: 0.00, ixz: 0.00, iyy: 0.00001457, iyz: 0.00, izz: 0.00002278}
@@ -67,7 +65,6 @@ tibia:
     length: 0.163
     radius: 0.0065
     mesh_file : 'stl/the_walking_thread/tibia.stl'
-    # mesh_file: 'None'
   inertia:
     mass: 0.08475
     inertia: {ixx: 0.0001634, ixy: -0.00000317, ixz: -0.00000029, iyy: 1.251e-05, iyz: 0.00000318, izz: 0.00016808}

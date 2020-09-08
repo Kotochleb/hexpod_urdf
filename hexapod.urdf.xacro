@@ -18,4 +18,10 @@
   <xacro:leg.leg leg_prefix="right_central" reflect="false" leg_pos="central" props_path="$(arg props_path)" />
   <xacro:leg.leg leg_prefix="right_rear" reflect="false" leg_pos="rear" props_path="$(arg props_path)" />
 
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/</robotNamespace>
+    </plugin>
+  </gazebo>
+
 </robot>
