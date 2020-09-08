@@ -29,7 +29,7 @@ coxa:
     # mesh_file: 'None'
   inertia:
     mass: 0.12131
-    inertia: {ixx: 9.165-05, ixy: 5.98e-06, ixz: -1.8e-06, iyy: 3.309e-05, iyz: -1.473e-05, izz: 8.256e-05}
+    inertia: {ixx: 0.00009165, ixy: 0.00000598, ixz: -0.0000018, iyy: 0.00003309, iyz: -0.00001473, izz: 0.00008256}
     origin: [-0.00018108 -0.01243788 0.00165404]
 
   joint:
@@ -49,7 +49,7 @@ femur:
     # mesh_file: 'None'
   inertia:
     mass: 0.02748837
-    inertia: {ixx: 1.094e-05, ixy: 0.00, ixz: 0.00, iyy: 1.457e-05, iyz: 0.00, izz: 2.278e-05}
+    inertia: {ixx: 0.00001094, ixy: 0.00, ixz: 0.00, iyy: 0.00001457, iyz: 0.00, izz: 0.00002278}
     origin: [0.00165535 -0.02849892 0.00]
 
   joint:
@@ -70,7 +70,7 @@ tibia:
     # mesh_file: 'None'
   inertia:
     mass: 0.08475
-    inertia: {ixx: 0.0001634, ixy: -3.17e-06, ixz: -2.9e-07, iyy: 1.251e-05, iyz: 3.18e-06, izz: 0.00016808}
+    inertia: {ixx: 0.0001634, ixy: -0.00000317, ixz: -0.00000029, iyy: 1.251e-05, iyz: 0.00000318, izz: 0.00016808}
     origin: [-0.00173997 -0.03291755 0.00160352]
 
   joint:

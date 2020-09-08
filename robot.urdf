@@ -37,7 +37,7 @@
     </collision>
     <inertial>
       <mass value="0.12131"/>
-      <inertia ixx="9.165-05" ixy="5.98e-06" ixz="-1.8e-06" iyy="3.309e-05" iyz="-1.473e-05" izz="8.256e-05"/>
+      <inertia ixx="9.165e-05" ixy="5.98e-06" ixz="-1.8e-06" iyy="3.309e-05" iyz="-1.473e-05" izz="8.256e-05"/>
     </inertial>
   </link>
   <link name="left_front_femur">
@@ -151,7 +151,7 @@
     </collision>
     <inertial>
       <mass value="0.12131"/>
-      <inertia ixx="9.165-05" ixy="5.98e-06" ixz="-1.8e-06" iyy="3.309e-05" iyz="-1.473e-05" izz="8.256e-05"/>
+      <inertia ixx="9.165e-05" ixy="5.98e-06" ixz="-1.8e-06" iyy="3.309e-05" iyz="-1.473e-05" izz="8.256e-05"/>
     </inertial>
   </link>
   <link name="left_central_femur">
@@ -265,7 +265,7 @@
     </collision>
     <inertial>
       <mass value="0.12131"/>
-      <inertia ixx="9.165-05" ixy="5.98e-06" ixz="-1.8e-06" iyy="3.309e-05" iyz="-1.473e-05" izz="8.256e-05"/>
+      <inertia ixx="9.165e-05" ixy="5.98e-06" ixz="-1.8e-06" iyy="3.309e-05" iyz="-1.473e-05" izz="8.256e-05"/>
     </inertial>
   </link>
   <link name="left_rear_femur">
@@ -379,7 +379,7 @@
     </collision>
     <inertial>
       <mass value="0.12131"/>
-      <inertia ixx="9.165-05" ixy="5.98e-06" ixz="-1.8e-06" iyy="3.309e-05" iyz="-1.473e-05" izz="8.256e-05"/>
+      <inertia ixx="9.165e-05" ixy="5.98e-06" ixz="-1.8e-06" iyy="3.309e-05" iyz="-1.473e-05" izz="8.256e-05"/>
     </inertial>
   </link>
   <link name="right_front_femur">
@@ -493,7 +493,7 @@
     </collision>
     <inertial>
       <mass value="0.12131"/>
-      <inertia ixx="9.165-05" ixy="5.98e-06" ixz="-1.8e-06" iyy="3.309e-05" iyz="-1.473e-05" izz="8.256e-05"/>
+      <inertia ixx="9.165e-05" ixy="5.98e-06" ixz="-1.8e-06" iyy="3.309e-05" iyz="-1.473e-05" izz="8.256e-05"/>
     </inertial>
   </link>
   <link name="right_central_femur">
@@ -607,7 +607,7 @@
     </collision>
     <inertial>
       <mass value="0.12131"/>
-      <inertia ixx="9.165-05" ixy="5.98e-06" ixz="-1.8e-06" iyy="3.309e-05" iyz="-1.473e-05" izz="8.256e-05"/>
+      <inertia ixx="9.165e-05" ixy="5.98e-06" ixz="-1.8e-06" iyy="3.309e-05" iyz="-1.473e-05" izz="8.256e-05"/>
     </inertial>
   </link>
   <link name="right_rear_femur">
