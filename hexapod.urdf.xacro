@@ -1,26 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot name="hexapod" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:arg name="props_path" default="$(cwd)/config/props.yaml" />
+  <xacro:arg name="props_path" default="$(cwd)/config/props/props.yaml" />
+  <xacro:arg name="use_package_relative" default="True" />
+
+  <xacro:property name="_use_package_relative" value="$(arg use_package_relative)" />
+  <xacro:if value="${_use_package_relative}">
+    <xacro:include filename="$(find the_walking_thread_gazebo)/src/urdf/model/body.urdf.xacro" ns="body" />
+    <xacro:include filename="$(find the_walking_thread_gazebo)/src/urdf/model/leg.urdf.xacro" ns="leg" />
+  </xacro:if>
+  <xacro:unless value="${_use_package_relative}">
+    <xacro:include filename="$(cwd)/model/body.urdf.xacro" ns="body" />
+    <xacro:include filename="$(cwd)/model/leg.urdf.xacro" ns="leg" />
+  </xacro:unless>
 
   <!-- BODY DECLARATION -->
-  <xacro:include filename="$(cwd)/model/body.urdf.xacro" ns="body" />
-  <xacro:body.body props_path="$(arg props_path)" />
+  <xacro:body.body props_path="$(arg props_path)" use_package_relative="$(arg use_package_relative)" />
 
   <!-- LED DECLARATION -->
-  <xacro:include filename="$(cwd)/model/leg.urdf.xacro" ns="leg" />
+  <xacro:leg.leg leg_prefix="left_front" reflect="true" leg_pos="front" props_path="$(arg props_path)" use_package_relative="$(arg use_package_relative)" />
+  <xacro:leg.leg leg_prefix="left_central" reflect="true" leg_pos="central" props_path="$(arg props_path)" use_package_relative="$(arg use_package_relative)" />
+  <xacro:leg.leg leg_prefix="left_rear" reflect="true" leg_pos="rear" props_path="$(arg props_path)" use_package_relative="$(arg use_package_relative)" />
 
-  <xacro:leg.leg leg_prefix="left_front" reflect="true" leg_pos="front" props_path="$(arg props_path)" />
-  <xacro:leg.leg leg_prefix="left_central" reflect="true" leg_pos="central" props_path="$(arg props_path)" />
-  <xacro:leg.leg leg_prefix="left_rear" reflect="true" leg_pos="rear" props_path="$(arg props_path)" />
-
-  <xacro:leg.leg leg_prefix="right_front" reflect="false" leg_pos="front" props_path="$(arg props_path)" />
-  <xacro:leg.leg leg_prefix="right_central" reflect="false" leg_pos="central" props_path="$(arg props_path)" />
-  <xacro:leg.leg leg_prefix="right_rear" reflect="false" leg_pos="rear" props_path="$(arg props_path)" />
+  <xacro:leg.leg leg_prefix="right_front" reflect="false" leg_pos="front" props_path="$(arg props_path)" use_package_relative="$(arg use_package_relative)" />
+  <xacro:leg.leg leg_prefix="right_central" reflect="false" leg_pos="central" props_path="$(arg props_path)" use_package_relative="$(arg use_package_relative)" />
+  <xacro:leg.leg leg_prefix="right_rear" reflect="false" leg_pos="rear" props_path="$(arg props_path)" use_package_relative="$(arg use_package_relative)" />
 
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>/</robotNamespace>
+      <robotNamespace>/simple_model</robotNamespace>
     </plugin>
   </gazebo>
 

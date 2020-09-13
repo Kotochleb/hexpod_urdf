@@ -7,7 +7,7 @@
   <link name="base_link">
     <visual>
       <geometry>
-        <mesh filename="stl/the_walking_thread/frame.stl" scale="1 1 1"/>
+        <mesh filename="meshes/the_walking_thread/frame.stl" scale="1 1 1"/>
       </geometry>
       <origin xyz="0 0 0"/>
     </visual>
@@ -24,16 +24,15 @@
   <link name="left_front_coxa">
     <visual>
       <geometry>
-        <mesh filename="stl/the_walking_thread/coxa.stl" scale="1 1 1"/>
+        <mesh filename="meshes/the_walking_thread/coxa.stl" scale="1 1 1"/>
       </geometry>
-      <mesh filename="stl/the_walking_thread/coxa.stl" scale="1 1 1"/>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.01825"/>
     </visual>
     <collision>
       <geometry>
         <sphere radius="0.019"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.027"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.0175"/>
     </collision>
     <inertial>
       <mass value="0.12131"/>
@@ -43,16 +42,15 @@
   <link name="left_front_femur">
     <visual>
       <geometry>
-        <mesh filename="stl/the_walking_thread/femur.stl" scale="1 1 1"/>
+        <mesh filename="meshes/the_walking_thread/femur.stl" scale="1 1 1"/>
       </geometry>
-      <mesh filename="stl/the_walking_thread/femur.stl" scale="1 1 1"/>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0285"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.02"/>
+        <sphere radius="0.03"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.047"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.027"/>
     </collision>
     <inertial>
       <mass value="0.02748837"/>
@@ -62,16 +60,15 @@
   <link name="left_front_tibia">
     <visual>
       <geometry>
-        <mesh filename="stl/the_walking_thread/tibia.stl" scale="1 1 1"/>
+        <mesh filename="meshes/the_walking_thread/tibia.stl" scale="1 1 1"/>
       </geometry>
-      <mesh filename="stl/the_walking_thread/tibia.stl" scale="1 1 1"/>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0815"/>
     </visual>
     <collision>
       <geometry>
         <sphere radius="0.0065"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.15975"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.1565"/>
     </collision>
     <inertial>
       <mass value="0.08475"/>
@@ -81,7 +78,6 @@
   <joint name="left_front_base_link_to_coxa_joint" type="revolute">
     <parent link="base_link"/>
     <origin rpy="-1.57079632679 0 3.14159265359" xyz="0.1809                        0.0585                        0"/>
-    <!-- ${reflect_multiplier*pi/2} -->
     <child link="left_front_coxa"/>
     <axis xyz="0 1 0"/>
     <limit effort="0.5295591" lower="-0.785398163397" upper="0.785398163397" velocity="0.003141593"/>
@@ -98,7 +94,6 @@
     </actuator>
   </transmission>
   <joint name="left_front_coxa_to_femur_joint" type="revolute">
-    <!-- ${reflect_multiplier*pi/2} -->
     <parent link="left_front_coxa"/>
     <origin rpy="0 0 0" xyz="0 -0.019 -0.0365"/>
     <child link="left_front_femur"/>
@@ -117,7 +112,6 @@
     </actuator>
   </transmission>
   <joint name="left_front_femur_to_tibia_joint" type="revolute">
-    <!-- ${reflect_multiplier*pi/2} -->
     <parent link="left_front_femur"/>
     <origin rpy="0 0 0" xyz="0 0 -0.057"/>
     <child link="left_front_tibia"/>
@@ -138,16 +132,15 @@
   <link name="left_central_coxa">
     <visual>
       <geometry>
-        <mesh filename="stl/the_walking_thread/coxa.stl" scale="1 1 1"/>
+        <mesh filename="meshes/the_walking_thread/coxa.stl" scale="1 1 1"/>
       </geometry>
-      <mesh filename="stl/the_walking_thread/coxa.stl" scale="1 1 1"/>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.01825"/>
     </visual>
     <collision>
       <geometry>
         <sphere radius="0.019"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.027"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.0175"/>
     </collision>
     <inertial>
       <mass value="0.12131"/>
@@ -157,16 +150,15 @@
   <link name="left_central_femur">
     <visual>
       <geometry>
-        <mesh filename="stl/the_walking_thread/femur.stl" scale="1 1 1"/>
+        <mesh filename="meshes/the_walking_thread/femur.stl" scale="1 1 1"/>
       </geometry>
-      <mesh filename="stl/the_walking_thread/femur.stl" scale="1 1 1"/>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0285"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.02"/>
+        <sphere radius="0.03"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.047"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.027"/>
     </collision>
     <inertial>
       <mass value="0.02748837"/>
@@ -176,16 +168,15 @@
   <link name="left_central_tibia">
     <visual>
       <geometry>
-        <mesh filename="stl/the_walking_thread/tibia.stl" scale="1 1 1"/>
+        <mesh filename="meshes/the_walking_thread/tibia.stl" scale="1 1 1"/>
       </geometry>
-      <mesh filename="stl/the_walking_thread/tibia.stl" scale="1 1 1"/>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0815"/>
     </visual>
     <collision>
       <geometry>
         <sphere radius="0.0065"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.15975"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.1565"/>
     </collision>
     <inertial>
       <mass value="0.08475"/>
@@ -195,7 +186,6 @@
   <joint name="left_central_base_link_to_coxa_joint" type="revolute">
     <parent link="base_link"/>
     <origin rpy="-1.57079632679 0 3.14159265359" xyz="0                        0.0585                        0"/>
-    <!-- ${reflect_multiplier*pi/2} -->
     <child link="left_central_coxa"/>
     <axis xyz="0 1 0"/>
     <limit effort="0.5295591" lower="-0.785398163397" upper="0.785398163397" velocity="0.003141593"/>
@@ -212,7 +202,6 @@
     </actuator>
   </transmission>
   <joint name="left_central_coxa_to_femur_joint" type="revolute">
-    <!-- ${reflect_multiplier*pi/2} -->
     <parent link="left_central_coxa"/>
     <origin rpy="0 0 0" xyz="0 -0.019 -0.0365"/>
     <child link="left_central_femur"/>
@@ -231,7 +220,6 @@
     </actuator>
   </transmission>
   <joint name="left_central_femur_to_tibia_joint" type="revolute">
-    <!-- ${reflect_multiplier*pi/2} -->
     <parent link="left_central_femur"/>
     <origin rpy="0 0 0" xyz="0 0 -0.057"/>
     <child link="left_central_tibia"/>
@@ -252,16 +240,15 @@
   <link name="left_rear_coxa">
     <visual>
       <geometry>
-        <mesh filename="stl/the_walking_thread/coxa.stl" scale="1 1 1"/>
+        <mesh filename="meshes/the_walking_thread/coxa.stl" scale="1 1 1"/>
       </geometry>
-      <mesh filename="stl/the_walking_thread/coxa.stl" scale="1 1 1"/>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.01825"/>
     </visual>
     <collision>
       <geometry>
         <sphere radius="0.019"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.027"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.0175"/>
     </collision>
     <inertial>
       <mass value="0.12131"/>
@@ -271,16 +258,15 @@
   <link name="left_rear_femur">
     <visual>
       <geometry>
-        <mesh filename="stl/the_walking_thread/femur.stl" scale="1 1 1"/>
+        <mesh filename="meshes/the_walking_thread/femur.stl" scale="1 1 1"/>
       </geometry>
-      <mesh filename="stl/the_walking_thread/femur.stl" scale="1 1 1"/>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0285"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.02"/>
+        <sphere radius="0.03"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.047"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.027"/>
     </collision>
     <inertial>
       <mass value="0.02748837"/>
@@ -290,16 +276,15 @@
   <link name="left_rear_tibia">
     <visual>
       <geometry>
-        <mesh filename="stl/the_walking_thread/tibia.stl" scale="1 1 1"/>
+        <mesh filename="meshes/the_walking_thread/tibia.stl" scale="1 1 1"/>
       </geometry>
-      <mesh filename="stl/the_walking_thread/tibia.stl" scale="1 1 1"/>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0815"/>
     </visual>
     <collision>
       <geometry>
         <sphere radius="0.0065"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.15975"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.1565"/>
     </collision>
     <inertial>
       <mass value="0.08475"/>
@@ -309,7 +294,6 @@
   <joint name="left_rear_base_link_to_coxa_joint" type="revolute">
     <parent link="base_link"/>
     <origin rpy="-1.57079632679 0 3.14159265359" xyz="-0.1809                        0.0585                        0"/>
-    <!-- ${reflect_multiplier*pi/2} -->
     <child link="left_rear_coxa"/>
     <axis xyz="0 1 0"/>
     <limit effort="0.5295591" lower="-0.785398163397" upper="0.785398163397" velocity="0.003141593"/>
@@ -326,7 +310,6 @@
     </actuator>
   </transmission>
   <joint name="left_rear_coxa_to_femur_joint" type="revolute">
-    <!-- ${reflect_multiplier*pi/2} -->
     <parent link="left_rear_coxa"/>
     <origin rpy="0 0 0" xyz="0 -0.019 -0.0365"/>
     <child link="left_rear_femur"/>
@@ -345,7 +328,6 @@
     </actuator>
   </transmission>
   <joint name="left_rear_femur_to_tibia_joint" type="revolute">
-    <!-- ${reflect_multiplier*pi/2} -->
     <parent link="left_rear_femur"/>
     <origin rpy="0 0 0" xyz="0 0 -0.057"/>
     <child link="left_rear_tibia"/>
@@ -366,16 +348,15 @@
   <link name="right_front_coxa">
     <visual>
       <geometry>
-        <mesh filename="stl/the_walking_thread/coxa.stl" scale="1 1 1"/>
+        <mesh filename="meshes/the_walking_thread/coxa.stl" scale="1 1 1"/>
       </geometry>
-      <mesh filename="stl/the_walking_thread/coxa.stl" scale="1 1 1"/>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.01825"/>
     </visual>
     <collision>
       <geometry>
         <sphere radius="0.019"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.027"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.0175"/>
     </collision>
     <inertial>
       <mass value="0.12131"/>
@@ -385,16 +366,15 @@
   <link name="right_front_femur">
     <visual>
       <geometry>
-        <mesh filename="stl/the_walking_thread/femur.stl" scale="1 1 1"/>
+        <mesh filename="meshes/the_walking_thread/femur.stl" scale="1 1 1"/>
       </geometry>
-      <mesh filename="stl/the_walking_thread/femur.stl" scale="1 1 1"/>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0285"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.02"/>
+        <sphere radius="0.03"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.047"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.027"/>
     </collision>
     <inertial>
       <mass value="0.02748837"/>
@@ -404,16 +384,15 @@
   <link name="right_front_tibia">
     <visual>
       <geometry>
-        <mesh filename="stl/the_walking_thread/tibia.stl" scale="1 1 1"/>
+        <mesh filename="meshes/the_walking_thread/tibia.stl" scale="1 1 1"/>
       </geometry>
-      <mesh filename="stl/the_walking_thread/tibia.stl" scale="1 1 1"/>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0815"/>
     </visual>
     <collision>
       <geometry>
         <sphere radius="0.0065"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.15975"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.1565"/>
     </collision>
     <inertial>
       <mass value="0.08475"/>
@@ -423,7 +402,6 @@
   <joint name="right_front_base_link_to_coxa_joint" type="revolute">
     <parent link="base_link"/>
     <origin rpy="-1.57079632679 0 0.0" xyz="0.1809                        -0.0585                        0"/>
-    <!-- ${reflect_multiplier*pi/2} -->
     <child link="right_front_coxa"/>
     <axis xyz="0 -1 0"/>
     <limit effort="0.5295591" lower="-0.785398163397" upper="0.785398163397" velocity="0.003141593"/>
@@ -440,7 +418,6 @@
     </actuator>
   </transmission>
   <joint name="right_front_coxa_to_femur_joint" type="revolute">
-    <!-- ${reflect_multiplier*pi/2} -->
     <parent link="right_front_coxa"/>
     <origin rpy="0 0 0" xyz="0 -0.019 -0.0365"/>
     <child link="right_front_femur"/>
@@ -459,7 +436,6 @@
     </actuator>
   </transmission>
   <joint name="right_front_femur_to_tibia_joint" type="revolute">
-    <!-- ${reflect_multiplier*pi/2} -->
     <parent link="right_front_femur"/>
     <origin rpy="0 0 0" xyz="0 0 -0.057"/>
     <child link="right_front_tibia"/>
@@ -480,16 +456,15 @@
   <link name="right_central_coxa">
     <visual>
       <geometry>
-        <mesh filename="stl/the_walking_thread/coxa.stl" scale="1 1 1"/>
+        <mesh filename="meshes/the_walking_thread/coxa.stl" scale="1 1 1"/>
       </geometry>
-      <mesh filename="stl/the_walking_thread/coxa.stl" scale="1 1 1"/>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.01825"/>
     </visual>
     <collision>
       <geometry>
         <sphere radius="0.019"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.027"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.0175"/>
     </collision>
     <inertial>
       <mass value="0.12131"/>
@@ -499,16 +474,15 @@
   <link name="right_central_femur">
     <visual>
       <geometry>
-        <mesh filename="stl/the_walking_thread/femur.stl" scale="1 1 1"/>
+        <mesh filename="meshes/the_walking_thread/femur.stl" scale="1 1 1"/>
       </geometry>
-      <mesh filename="stl/the_walking_thread/femur.stl" scale="1 1 1"/>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0285"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.02"/>
+        <sphere radius="0.03"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.047"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.027"/>
     </collision>
     <inertial>
       <mass value="0.02748837"/>
@@ -518,16 +492,15 @@
   <link name="right_central_tibia">
     <visual>
       <geometry>
-        <mesh filename="stl/the_walking_thread/tibia.stl" scale="1 1 1"/>
+        <mesh filename="meshes/the_walking_thread/tibia.stl" scale="1 1 1"/>
       </geometry>
-      <mesh filename="stl/the_walking_thread/tibia.stl" scale="1 1 1"/>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0815"/>
     </visual>
     <collision>
       <geometry>
         <sphere radius="0.0065"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.15975"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.1565"/>
     </collision>
     <inertial>
       <mass value="0.08475"/>
@@ -537,7 +510,6 @@
   <joint name="right_central_base_link_to_coxa_joint" type="revolute">
     <parent link="base_link"/>
     <origin rpy="-1.57079632679 0 0.0" xyz="0                        -0.0585                        0"/>
-    <!-- ${reflect_multiplier*pi/2} -->
     <child link="right_central_coxa"/>
     <axis xyz="0 -1 0"/>
     <limit effort="0.5295591" lower="-0.785398163397" upper="0.785398163397" velocity="0.003141593"/>
@@ -554,7 +526,6 @@
     </actuator>
   </transmission>
   <joint name="right_central_coxa_to_femur_joint" type="revolute">
-    <!-- ${reflect_multiplier*pi/2} -->
     <parent link="right_central_coxa"/>
     <origin rpy="0 0 0" xyz="0 -0.019 -0.0365"/>
     <child link="right_central_femur"/>
@@ -573,7 +544,6 @@
     </actuator>
   </transmission>
   <joint name="right_central_femur_to_tibia_joint" type="revolute">
-    <!-- ${reflect_multiplier*pi/2} -->
     <parent link="right_central_femur"/>
     <origin rpy="0 0 0" xyz="0 0 -0.057"/>
     <child link="right_central_tibia"/>
@@ -594,16 +564,15 @@
   <link name="right_rear_coxa">
     <visual>
       <geometry>
-        <mesh filename="stl/the_walking_thread/coxa.stl" scale="1 1 1"/>
+        <mesh filename="meshes/the_walking_thread/coxa.stl" scale="1 1 1"/>
       </geometry>
-      <mesh filename="stl/the_walking_thread/coxa.stl" scale="1 1 1"/>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.01825"/>
     </visual>
     <collision>
       <geometry>
         <sphere radius="0.019"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.027"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.0175"/>
     </collision>
     <inertial>
       <mass value="0.12131"/>
@@ -613,16 +582,15 @@
   <link name="right_rear_femur">
     <visual>
       <geometry>
-        <mesh filename="stl/the_walking_thread/femur.stl" scale="1 1 1"/>
+        <mesh filename="meshes/the_walking_thread/femur.stl" scale="1 1 1"/>
       </geometry>
-      <mesh filename="stl/the_walking_thread/femur.stl" scale="1 1 1"/>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0285"/>
     </visual>
     <collision>
       <geometry>
-        <sphere radius="0.02"/>
+        <sphere radius="0.03"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.047"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.027"/>
     </collision>
     <inertial>
       <mass value="0.02748837"/>
@@ -632,16 +600,15 @@
   <link name="right_rear_tibia">
     <visual>
       <geometry>
-        <mesh filename="stl/the_walking_thread/tibia.stl" scale="1 1 1"/>
+        <mesh filename="meshes/the_walking_thread/tibia.stl" scale="1 1 1"/>
       </geometry>
-      <mesh filename="stl/the_walking_thread/tibia.stl" scale="1 1 1"/>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0815"/>
     </visual>
     <collision>
       <geometry>
         <sphere radius="0.0065"/>
       </geometry>
-      <origin rpy="0 0 0" xyz="0 0 -0.15975"/>
+      <origin rpy="0 0 0" xyz="0 0 -0.1565"/>
     </collision>
     <inertial>
       <mass value="0.08475"/>
@@ -651,7 +618,6 @@
   <joint name="right_rear_base_link_to_coxa_joint" type="revolute">
     <parent link="base_link"/>
     <origin rpy="-1.57079632679 0 0.0" xyz="-0.1809                        -0.0585                        0"/>
-    <!-- ${reflect_multiplier*pi/2} -->
     <child link="right_rear_coxa"/>
     <axis xyz="0 -1 0"/>
     <limit effort="0.5295591" lower="-0.785398163397" upper="0.785398163397" velocity="0.003141593"/>
@@ -668,7 +634,6 @@
     </actuator>
   </transmission>
   <joint name="right_rear_coxa_to_femur_joint" type="revolute">
-    <!-- ${reflect_multiplier*pi/2} -->
     <parent link="right_rear_coxa"/>
     <origin rpy="0 0 0" xyz="0 -0.019 -0.0365"/>
     <child link="right_rear_femur"/>
@@ -687,7 +652,6 @@
     </actuator>
   </transmission>
   <joint name="right_rear_femur_to_tibia_joint" type="revolute">
-    <!-- ${reflect_multiplier*pi/2} -->
     <parent link="right_rear_femur"/>
     <origin rpy="0 0 0" xyz="0 0 -0.057"/>
     <child link="right_rear_tibia"/>

@@ -2,18 +2,18 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- LEG MACRO -->
-  <xacro:macro name="leg" params="leg_prefix reflect leg_pos props_path">
+  <xacro:macro name="leg" params="leg_prefix reflect leg_pos props_path use_package_relative">
 
     <xacro:property name="yaml_file" value="${props_path}" />
     <xacro:property name="robot_props" value="${load_yaml(yaml_file)}" />
 
     <!-- CONDITIONAL BLOCKS -->
     <xacro:if value="${reflect}"> <xacro:property name="reflect_multiplier" value="1" /> </xacro:if>
-    <xacro:if value="${not reflect}"> <xacro:property name="reflect_multiplier" value="-1" />   </xacro:if>
+    <xacro:unless value="${reflect}"> <xacro:property name="reflect_multiplier" value="-1" />   </xacro:unless>
 
-    <xacro:if value="${leg_pos=='rear'}"> <xacro:property name="leg_pos_val" value="${-robot_props['body']['link']['length']/2}" /> </xacro:if>
-    <xacro:if value="${leg_pos=='central'}"> <xacro:property name="leg_pos_val" value="0" /> </xacro:if>
-    <xacro:if value="${leg_pos=='front'}"> <xacro:property name="leg_pos_val" value="${robot_props['body']['link']['length']/2}" /> </xacro:if>
+    <xacro:if value="${leg_pos == 'rear'}"> <xacro:property name="leg_pos_val" value="${-robot_props['body']['link']['length']/2}" /> </xacro:if>
+    <xacro:if value="${leg_pos == 'central'}"> <xacro:property name="leg_pos_val" value="0" /> </xacro:if>
+    <xacro:if value="${leg_pos == 'front'}"> <xacro:property name="leg_pos_val" value="${robot_props['body']['link']['length']/2}" /> </xacro:if>
 
 
     <!-- LEG LINK -->
@@ -26,9 +26,15 @@
               <cylinder length="${props['link']['length']}"
                         radius="${props['link']['radius']}" />
             </xacro:if>
-            <xacro:if value="${mesh_file != 'None'}">
-              <mesh filename="${mesh_file}" scale="1 1 1" />
-            </xacro:if>
+
+            <xacro:unless value="${mesh_file == 'None'}">
+              <xacro:if value="${use_package_relative}">
+                <mesh filename="package://${robot_props['package']['name']}/${robot_props['package']['meshes_path']}/${mesh_file}" scale="1 1 1" />
+              </xacro:if>
+              <xacro:unless value="${use_package_relative}">
+                <mesh filename="${mesh_file}" scale="1 1 1" />
+              </xacro:unless>
+            </xacro:unless>
           </geometry>
 
           <xacro:property name="mesh_file" value="${props['link']['mesh_file']}" />
@@ -36,18 +42,17 @@
             <origin xyz="0 0 -${props['link']['length']/2}"
                     rpy="0 0 0" />
           </xacro:if>
-          <xacro:if value="${mesh_file != 'None'}">
-            <mesh filename="${mesh_file}" scale="1 1 1" />
+          <xacro:unless value="${mesh_file == 'None'}">
             <origin xyz="0 0 -${props['link']['length']/2}"
                     rpy="${pi/2} 0 0" />
-          </xacro:if>
+          </xacro:unless>
         </visual>
 
         <collision>
           <geometry>
             <sphere radius="${props['link']['radius']}" />
           </geometry>
-          <origin xyz="0 0 -${(props['link']['length']-(props['link']['radius']/2))}"
+          <origin xyz="0 0 -${(props['link']['length']-(props['link']['radius']))}"
                   rpy="0 0 0" />
         </collision>
 
@@ -78,7 +83,6 @@
                        0"
                   rpy="${-pi/2} 0 ${reflect_multiplier*pi/2+pi/2}" />
         </xacro:if>
-        <!-- ${reflect_multiplier*pi/2} -->
 
         <xacro:if value="${not (parent_name == 'base_link')}">
           <parent link="${leg_prefix}_${parent['name']}" />
@@ -99,15 +103,13 @@
       </joint>
 
       <!-- TRANSMITION DEFINITION -->
-      <transmission name="${leg_prefix}_${parent['name']}_to_${child['name']}_transmition"
-                    type="SimpleTransmission">
-
+      <transmission name="${leg_prefix}_${parent['name']}_to_${child['name']}_transmition">
         <type>transmission_interface/SimpleTransmission</type>
         <joint name="${leg_prefix}_${parent['name']}_to_${child['name']}_joint">
-          <hardwareInterface>EffortJointInterface</hardwareInterface>
+          <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         </joint>
         <actuator name="${leg_prefix}_${parent['name']}_to_${child['name']}_actuator">
-          <hardwareInterface>EffortJointInterface</hardwareInterface>
+          <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
           <mechanicalReduction>1</mechanicalReduction>
         </actuator>
       </transmission>

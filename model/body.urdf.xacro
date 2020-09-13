@@ -2,7 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <!-- body defining macro -->
-  <xacro:macro name="body" params="props_path">
+  <xacro:macro name="body" params="props_path use_package_relative">
 
     <xacro:property name="yaml_file" value="${props_path}"  />
     <xacro:property name="props" value="${load_yaml(yaml_file)}" />
@@ -16,9 +16,15 @@
                      ${props['body']['link']['width']}
                      ${props['body']['link']['thickness']}" />
         </xacro:if>
-        <xacro:if value="${mesh_file != 'None'}">
-          <mesh filename="${mesh_file}" scale="1 1 1" />
-        </xacro:if>
+        <xacro:unless value="${mesh_file == 'None'}">
+          <xacro:if value="${use_package_relative}">
+            <mesh filename="package://${props['package']['name']}/${props['package']['meshes_path']}/${mesh_file}" scale="1 1 1" />
+          </xacro:if>
+          <xacro:unless value="${use_package_relative}">
+            <mesh filename="${mesh_file}" scale="1 1 1" />
+          </xacro:unless>
+        </xacro:unless>
+
         </geometry>
         <origin xyz="0 0 0" />
       </visual>
