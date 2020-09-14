@@ -76,15 +76,16 @@
              type="revolute">
 
         <xacro:property name="parent_name" value="${parent['name']}" />
-        <xacro:if value="${parent_name == 'base_link'}">
-          <parent link="base_link" />
+        <xacro:property name="body_link_name" value="${robot_props['body']['name']}" />
+        <xacro:if value="${parent_name == body_link_name}">
+          <parent link="${body_link_name}" />
           <origin xyz="${leg_pos_val}
                        ${reflect_multiplier*robot_props['body']['link']['width']/2}
                        0"
                   rpy="${-pi/2} 0 ${reflect_multiplier*pi/2+pi/2}" />
         </xacro:if>
 
-        <xacro:if value="${not (parent_name == 'base_link')}">
+        <xacro:if value="${not (parent_name == body_link_name)}">
           <parent link="${leg_prefix}_${parent['name']}" />
           <origin xyz="${parent['joint']['origin'][0]}"
                   rpy="0 0 0" />
@@ -133,6 +134,12 @@
     <xacro:leg_joint parent="${robot_props['femur']}"
                      child="${robot_props['tibia']}"
                      axis="1 0 0" />
+
+
+    <gazebo reference="${leg_prefix}_${robot_props['coxa']['name']}">
+      <mu1>0.9</mu1>
+      <mu2>0.6</mu2>
+    </gazebo>
 
   </xacro:macro>
 

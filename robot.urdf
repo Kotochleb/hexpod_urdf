@@ -4,10 +4,11 @@
 <!-- |    EDITING THIS FILE BY HAND IS NOT RECOMMENDED                                 | -->
 <!-- =================================================================================== -->
 <robot name="hexapod">
-  <link name="base_link">
+  <link name="base_link"/>
+  <link name="body">
     <visual>
       <geometry>
-        <mesh filename="meshes/the_walking_thread/frame.stl" scale="1 1 1"/>
+        <mesh filename="package://the_walking_thread_gazebo/src/urdf/meshes/the_walking_thread/frame.stl" scale="1 1 1"/>
       </geometry>
       <origin xyz="0 0 0"/>
     </visual>
@@ -21,10 +22,15 @@
       <inertia ixx="0.00022432" ixy="0.0" ixz="0.0" iyy="0.0041164" iyz="0.0" izz="0.00422412"/>
     </inertial>
   </link>
+  <joint name="base_link_to_body_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="body"/>
+  </joint>
   <link name="left_front_coxa">
     <visual>
       <geometry>
-        <mesh filename="meshes/the_walking_thread/coxa.stl" scale="1 1 1"/>
+        <mesh filename="package://the_walking_thread_gazebo/src/urdf/meshes/the_walking_thread/coxa.stl" scale="1 1 1"/>
       </geometry>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.01825"/>
     </visual>
@@ -42,7 +48,7 @@
   <link name="left_front_femur">
     <visual>
       <geometry>
-        <mesh filename="meshes/the_walking_thread/femur.stl" scale="1 1 1"/>
+        <mesh filename="package://the_walking_thread_gazebo/src/urdf/meshes/the_walking_thread/femur.stl" scale="1 1 1"/>
       </geometry>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0285"/>
     </visual>
@@ -60,7 +66,7 @@
   <link name="left_front_tibia">
     <visual>
       <geometry>
-        <mesh filename="meshes/the_walking_thread/tibia.stl" scale="1 1 1"/>
+        <mesh filename="package://the_walking_thread_gazebo/src/urdf/meshes/the_walking_thread/tibia.stl" scale="1 1 1"/>
       </geometry>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0815"/>
     </visual>
@@ -75,21 +81,21 @@
       <inertia ixx="0.0001634" ixy="-3.17e-06" ixz="-2.9e-07" iyy="1.251e-05" iyz="3.18e-06" izz="0.00016808"/>
     </inertial>
   </link>
-  <joint name="left_front_base_link_to_coxa_joint" type="revolute">
-    <parent link="base_link"/>
+  <joint name="left_front_body_to_coxa_joint" type="revolute">
+    <parent link="body"/>
     <origin rpy="-1.57079632679 0 3.14159265359" xyz="0.1809                        0.0585                        0"/>
     <child link="left_front_coxa"/>
     <axis xyz="0 1 0"/>
     <limit effort="0.5295591" lower="-0.785398163397" upper="0.785398163397" velocity="0.003141593"/>
   </joint>
   <!-- TRANSMITION DEFINITION -->
-  <transmission name="left_front_base_link_to_coxa_transmition" type="SimpleTransmission">
+  <transmission name="left_front_body_to_coxa_transmition">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="left_front_base_link_to_coxa_joint">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="left_front_body_to_coxa_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="left_front_base_link_to_coxa_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <actuator name="left_front_body_to_coxa_actuator">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -101,13 +107,13 @@
     <limit effort="0.5295591" lower="-0.785398163397" upper="0.785398163397" velocity="0.003141593"/>
   </joint>
   <!-- TRANSMITION DEFINITION -->
-  <transmission name="left_front_coxa_to_femur_transmition" type="SimpleTransmission">
+  <transmission name="left_front_coxa_to_femur_transmition">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="left_front_coxa_to_femur_joint">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="left_front_coxa_to_femur_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -119,20 +125,24 @@
     <limit effort="0.5295591" lower="0.0" upper="2.35619449019" velocity="0.003141593"/>
   </joint>
   <!-- TRANSMITION DEFINITION -->
-  <transmission name="left_front_femur_to_tibia_transmition" type="SimpleTransmission">
+  <transmission name="left_front_femur_to_tibia_transmition">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="left_front_femur_to_tibia_joint">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="left_front_femur_to_tibia_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  <gazebo reference="left_front_coxa">
+    <mu1>0.9</mu1>
+    <mu2>0.6</mu2>
+  </gazebo>
   <link name="left_central_coxa">
     <visual>
       <geometry>
-        <mesh filename="meshes/the_walking_thread/coxa.stl" scale="1 1 1"/>
+        <mesh filename="package://the_walking_thread_gazebo/src/urdf/meshes/the_walking_thread/coxa.stl" scale="1 1 1"/>
       </geometry>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.01825"/>
     </visual>
@@ -150,7 +160,7 @@
   <link name="left_central_femur">
     <visual>
       <geometry>
-        <mesh filename="meshes/the_walking_thread/femur.stl" scale="1 1 1"/>
+        <mesh filename="package://the_walking_thread_gazebo/src/urdf/meshes/the_walking_thread/femur.stl" scale="1 1 1"/>
       </geometry>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0285"/>
     </visual>
@@ -168,7 +178,7 @@
   <link name="left_central_tibia">
     <visual>
       <geometry>
-        <mesh filename="meshes/the_walking_thread/tibia.stl" scale="1 1 1"/>
+        <mesh filename="package://the_walking_thread_gazebo/src/urdf/meshes/the_walking_thread/tibia.stl" scale="1 1 1"/>
       </geometry>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0815"/>
     </visual>
@@ -183,21 +193,21 @@
       <inertia ixx="0.0001634" ixy="-3.17e-06" ixz="-2.9e-07" iyy="1.251e-05" iyz="3.18e-06" izz="0.00016808"/>
     </inertial>
   </link>
-  <joint name="left_central_base_link_to_coxa_joint" type="revolute">
-    <parent link="base_link"/>
+  <joint name="left_central_body_to_coxa_joint" type="revolute">
+    <parent link="body"/>
     <origin rpy="-1.57079632679 0 3.14159265359" xyz="0                        0.0585                        0"/>
     <child link="left_central_coxa"/>
     <axis xyz="0 1 0"/>
     <limit effort="0.5295591" lower="-0.785398163397" upper="0.785398163397" velocity="0.003141593"/>
   </joint>
   <!-- TRANSMITION DEFINITION -->
-  <transmission name="left_central_base_link_to_coxa_transmition" type="SimpleTransmission">
+  <transmission name="left_central_body_to_coxa_transmition">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="left_central_base_link_to_coxa_joint">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="left_central_body_to_coxa_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="left_central_base_link_to_coxa_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <actuator name="left_central_body_to_coxa_actuator">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -209,13 +219,13 @@
     <limit effort="0.5295591" lower="-0.785398163397" upper="0.785398163397" velocity="0.003141593"/>
   </joint>
   <!-- TRANSMITION DEFINITION -->
-  <transmission name="left_central_coxa_to_femur_transmition" type="SimpleTransmission">
+  <transmission name="left_central_coxa_to_femur_transmition">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="left_central_coxa_to_femur_joint">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="left_central_coxa_to_femur_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -227,20 +237,24 @@
     <limit effort="0.5295591" lower="0.0" upper="2.35619449019" velocity="0.003141593"/>
   </joint>
   <!-- TRANSMITION DEFINITION -->
-  <transmission name="left_central_femur_to_tibia_transmition" type="SimpleTransmission">
+  <transmission name="left_central_femur_to_tibia_transmition">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="left_central_femur_to_tibia_joint">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="left_central_femur_to_tibia_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  <gazebo reference="left_central_coxa">
+    <mu1>0.9</mu1>
+    <mu2>0.6</mu2>
+  </gazebo>
   <link name="left_rear_coxa">
     <visual>
       <geometry>
-        <mesh filename="meshes/the_walking_thread/coxa.stl" scale="1 1 1"/>
+        <mesh filename="package://the_walking_thread_gazebo/src/urdf/meshes/the_walking_thread/coxa.stl" scale="1 1 1"/>
       </geometry>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.01825"/>
     </visual>
@@ -258,7 +272,7 @@
   <link name="left_rear_femur">
     <visual>
       <geometry>
-        <mesh filename="meshes/the_walking_thread/femur.stl" scale="1 1 1"/>
+        <mesh filename="package://the_walking_thread_gazebo/src/urdf/meshes/the_walking_thread/femur.stl" scale="1 1 1"/>
       </geometry>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0285"/>
     </visual>
@@ -276,7 +290,7 @@
   <link name="left_rear_tibia">
     <visual>
       <geometry>
-        <mesh filename="meshes/the_walking_thread/tibia.stl" scale="1 1 1"/>
+        <mesh filename="package://the_walking_thread_gazebo/src/urdf/meshes/the_walking_thread/tibia.stl" scale="1 1 1"/>
       </geometry>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0815"/>
     </visual>
@@ -291,21 +305,21 @@
       <inertia ixx="0.0001634" ixy="-3.17e-06" ixz="-2.9e-07" iyy="1.251e-05" iyz="3.18e-06" izz="0.00016808"/>
     </inertial>
   </link>
-  <joint name="left_rear_base_link_to_coxa_joint" type="revolute">
-    <parent link="base_link"/>
+  <joint name="left_rear_body_to_coxa_joint" type="revolute">
+    <parent link="body"/>
     <origin rpy="-1.57079632679 0 3.14159265359" xyz="-0.1809                        0.0585                        0"/>
     <child link="left_rear_coxa"/>
     <axis xyz="0 1 0"/>
     <limit effort="0.5295591" lower="-0.785398163397" upper="0.785398163397" velocity="0.003141593"/>
   </joint>
   <!-- TRANSMITION DEFINITION -->
-  <transmission name="left_rear_base_link_to_coxa_transmition" type="SimpleTransmission">
+  <transmission name="left_rear_body_to_coxa_transmition">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="left_rear_base_link_to_coxa_joint">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="left_rear_body_to_coxa_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="left_rear_base_link_to_coxa_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <actuator name="left_rear_body_to_coxa_actuator">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -317,13 +331,13 @@
     <limit effort="0.5295591" lower="-0.785398163397" upper="0.785398163397" velocity="0.003141593"/>
   </joint>
   <!-- TRANSMITION DEFINITION -->
-  <transmission name="left_rear_coxa_to_femur_transmition" type="SimpleTransmission">
+  <transmission name="left_rear_coxa_to_femur_transmition">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="left_rear_coxa_to_femur_joint">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="left_rear_coxa_to_femur_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -335,20 +349,24 @@
     <limit effort="0.5295591" lower="0.0" upper="2.35619449019" velocity="0.003141593"/>
   </joint>
   <!-- TRANSMITION DEFINITION -->
-  <transmission name="left_rear_femur_to_tibia_transmition" type="SimpleTransmission">
+  <transmission name="left_rear_femur_to_tibia_transmition">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="left_rear_femur_to_tibia_joint">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="left_rear_femur_to_tibia_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  <gazebo reference="left_rear_coxa">
+    <mu1>0.9</mu1>
+    <mu2>0.6</mu2>
+  </gazebo>
   <link name="right_front_coxa">
     <visual>
       <geometry>
-        <mesh filename="meshes/the_walking_thread/coxa.stl" scale="1 1 1"/>
+        <mesh filename="package://the_walking_thread_gazebo/src/urdf/meshes/the_walking_thread/coxa.stl" scale="1 1 1"/>
       </geometry>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.01825"/>
     </visual>
@@ -366,7 +384,7 @@
   <link name="right_front_femur">
     <visual>
       <geometry>
-        <mesh filename="meshes/the_walking_thread/femur.stl" scale="1 1 1"/>
+        <mesh filename="package://the_walking_thread_gazebo/src/urdf/meshes/the_walking_thread/femur.stl" scale="1 1 1"/>
       </geometry>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0285"/>
     </visual>
@@ -384,7 +402,7 @@
   <link name="right_front_tibia">
     <visual>
       <geometry>
-        <mesh filename="meshes/the_walking_thread/tibia.stl" scale="1 1 1"/>
+        <mesh filename="package://the_walking_thread_gazebo/src/urdf/meshes/the_walking_thread/tibia.stl" scale="1 1 1"/>
       </geometry>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0815"/>
     </visual>
@@ -399,21 +417,21 @@
       <inertia ixx="0.0001634" ixy="-3.17e-06" ixz="-2.9e-07" iyy="1.251e-05" iyz="3.18e-06" izz="0.00016808"/>
     </inertial>
   </link>
-  <joint name="right_front_base_link_to_coxa_joint" type="revolute">
-    <parent link="base_link"/>
+  <joint name="right_front_body_to_coxa_joint" type="revolute">
+    <parent link="body"/>
     <origin rpy="-1.57079632679 0 0.0" xyz="0.1809                        -0.0585                        0"/>
     <child link="right_front_coxa"/>
     <axis xyz="0 -1 0"/>
     <limit effort="0.5295591" lower="-0.785398163397" upper="0.785398163397" velocity="0.003141593"/>
   </joint>
   <!-- TRANSMITION DEFINITION -->
-  <transmission name="right_front_base_link_to_coxa_transmition" type="SimpleTransmission">
+  <transmission name="right_front_body_to_coxa_transmition">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="right_front_base_link_to_coxa_joint">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="right_front_body_to_coxa_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="right_front_base_link_to_coxa_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <actuator name="right_front_body_to_coxa_actuator">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -425,13 +443,13 @@
     <limit effort="0.5295591" lower="-0.785398163397" upper="0.785398163397" velocity="0.003141593"/>
   </joint>
   <!-- TRANSMITION DEFINITION -->
-  <transmission name="right_front_coxa_to_femur_transmition" type="SimpleTransmission">
+  <transmission name="right_front_coxa_to_femur_transmition">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="right_front_coxa_to_femur_joint">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="right_front_coxa_to_femur_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -443,20 +461,24 @@
     <limit effort="0.5295591" lower="0.0" upper="2.35619449019" velocity="0.003141593"/>
   </joint>
   <!-- TRANSMITION DEFINITION -->
-  <transmission name="right_front_femur_to_tibia_transmition" type="SimpleTransmission">
+  <transmission name="right_front_femur_to_tibia_transmition">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="right_front_femur_to_tibia_joint">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="right_front_femur_to_tibia_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  <gazebo reference="right_front_coxa">
+    <mu1>0.9</mu1>
+    <mu2>0.6</mu2>
+  </gazebo>
   <link name="right_central_coxa">
     <visual>
       <geometry>
-        <mesh filename="meshes/the_walking_thread/coxa.stl" scale="1 1 1"/>
+        <mesh filename="package://the_walking_thread_gazebo/src/urdf/meshes/the_walking_thread/coxa.stl" scale="1 1 1"/>
       </geometry>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.01825"/>
     </visual>
@@ -474,7 +496,7 @@
   <link name="right_central_femur">
     <visual>
       <geometry>
-        <mesh filename="meshes/the_walking_thread/femur.stl" scale="1 1 1"/>
+        <mesh filename="package://the_walking_thread_gazebo/src/urdf/meshes/the_walking_thread/femur.stl" scale="1 1 1"/>
       </geometry>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0285"/>
     </visual>
@@ -492,7 +514,7 @@
   <link name="right_central_tibia">
     <visual>
       <geometry>
-        <mesh filename="meshes/the_walking_thread/tibia.stl" scale="1 1 1"/>
+        <mesh filename="package://the_walking_thread_gazebo/src/urdf/meshes/the_walking_thread/tibia.stl" scale="1 1 1"/>
       </geometry>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0815"/>
     </visual>
@@ -507,21 +529,21 @@
       <inertia ixx="0.0001634" ixy="-3.17e-06" ixz="-2.9e-07" iyy="1.251e-05" iyz="3.18e-06" izz="0.00016808"/>
     </inertial>
   </link>
-  <joint name="right_central_base_link_to_coxa_joint" type="revolute">
-    <parent link="base_link"/>
+  <joint name="right_central_body_to_coxa_joint" type="revolute">
+    <parent link="body"/>
     <origin rpy="-1.57079632679 0 0.0" xyz="0                        -0.0585                        0"/>
     <child link="right_central_coxa"/>
     <axis xyz="0 -1 0"/>
     <limit effort="0.5295591" lower="-0.785398163397" upper="0.785398163397" velocity="0.003141593"/>
   </joint>
   <!-- TRANSMITION DEFINITION -->
-  <transmission name="right_central_base_link_to_coxa_transmition" type="SimpleTransmission">
+  <transmission name="right_central_body_to_coxa_transmition">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="right_central_base_link_to_coxa_joint">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="right_central_body_to_coxa_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="right_central_base_link_to_coxa_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <actuator name="right_central_body_to_coxa_actuator">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -533,13 +555,13 @@
     <limit effort="0.5295591" lower="-0.785398163397" upper="0.785398163397" velocity="0.003141593"/>
   </joint>
   <!-- TRANSMITION DEFINITION -->
-  <transmission name="right_central_coxa_to_femur_transmition" type="SimpleTransmission">
+  <transmission name="right_central_coxa_to_femur_transmition">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="right_central_coxa_to_femur_joint">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="right_central_coxa_to_femur_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -551,20 +573,24 @@
     <limit effort="0.5295591" lower="0.0" upper="2.35619449019" velocity="0.003141593"/>
   </joint>
   <!-- TRANSMITION DEFINITION -->
-  <transmission name="right_central_femur_to_tibia_transmition" type="SimpleTransmission">
+  <transmission name="right_central_femur_to_tibia_transmition">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="right_central_femur_to_tibia_joint">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="right_central_femur_to_tibia_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  <gazebo reference="right_central_coxa">
+    <mu1>0.9</mu1>
+    <mu2>0.6</mu2>
+  </gazebo>
   <link name="right_rear_coxa">
     <visual>
       <geometry>
-        <mesh filename="meshes/the_walking_thread/coxa.stl" scale="1 1 1"/>
+        <mesh filename="package://the_walking_thread_gazebo/src/urdf/meshes/the_walking_thread/coxa.stl" scale="1 1 1"/>
       </geometry>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.01825"/>
     </visual>
@@ -582,7 +608,7 @@
   <link name="right_rear_femur">
     <visual>
       <geometry>
-        <mesh filename="meshes/the_walking_thread/femur.stl" scale="1 1 1"/>
+        <mesh filename="package://the_walking_thread_gazebo/src/urdf/meshes/the_walking_thread/femur.stl" scale="1 1 1"/>
       </geometry>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0285"/>
     </visual>
@@ -600,7 +626,7 @@
   <link name="right_rear_tibia">
     <visual>
       <geometry>
-        <mesh filename="meshes/the_walking_thread/tibia.stl" scale="1 1 1"/>
+        <mesh filename="package://the_walking_thread_gazebo/src/urdf/meshes/the_walking_thread/tibia.stl" scale="1 1 1"/>
       </geometry>
       <origin rpy="1.57079632679 0 0" xyz="0 0 -0.0815"/>
     </visual>
@@ -615,21 +641,21 @@
       <inertia ixx="0.0001634" ixy="-3.17e-06" ixz="-2.9e-07" iyy="1.251e-05" iyz="3.18e-06" izz="0.00016808"/>
     </inertial>
   </link>
-  <joint name="right_rear_base_link_to_coxa_joint" type="revolute">
-    <parent link="base_link"/>
+  <joint name="right_rear_body_to_coxa_joint" type="revolute">
+    <parent link="body"/>
     <origin rpy="-1.57079632679 0 0.0" xyz="-0.1809                        -0.0585                        0"/>
     <child link="right_rear_coxa"/>
     <axis xyz="0 -1 0"/>
     <limit effort="0.5295591" lower="-0.785398163397" upper="0.785398163397" velocity="0.003141593"/>
   </joint>
   <!-- TRANSMITION DEFINITION -->
-  <transmission name="right_rear_base_link_to_coxa_transmition" type="SimpleTransmission">
+  <transmission name="right_rear_body_to_coxa_transmition">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="right_rear_base_link_to_coxa_joint">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <joint name="right_rear_body_to_coxa_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
-    <actuator name="right_rear_base_link_to_coxa_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <actuator name="right_rear_body_to_coxa_actuator">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -641,13 +667,13 @@
     <limit effort="0.5295591" lower="-0.785398163397" upper="0.785398163397" velocity="0.003141593"/>
   </joint>
   <!-- TRANSMITION DEFINITION -->
-  <transmission name="right_rear_coxa_to_femur_transmition" type="SimpleTransmission">
+  <transmission name="right_rear_coxa_to_femur_transmition">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="right_rear_coxa_to_femur_joint">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="right_rear_coxa_to_femur_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -659,20 +685,27 @@
     <limit effort="0.5295591" lower="0.0" upper="2.35619449019" velocity="0.003141593"/>
   </joint>
   <!-- TRANSMITION DEFINITION -->
-  <transmission name="right_rear_femur_to_tibia_transmition" type="SimpleTransmission">
+  <transmission name="right_rear_femur_to_tibia_transmition">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="right_rear_femur_to_tibia_joint">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="right_rear_femur_to_tibia_actuator">
-      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  <gazebo reference="right_rear_coxa">
+    <mu1>0.9</mu1>
+    <mu2>0.6</mu2>
+  </gazebo>
   <gazebo>
     <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
-      <robotNamespace>/</robotNamespace>
+      <robotNamespace>/twt</robotNamespace>
     </plugin>
+  </gazebo>
+  <gazebo reference="base_link">
+    <gravity>0</gravity>
   </gazebo>
 </robot>
 

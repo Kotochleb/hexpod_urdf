@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot name="hexapod" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:arg name="props_path" default="$(cwd)/config/props/props.yaml" />
+  <xacro:arg name="props_path" default="$(cwd)/config/props/twt_props.yaml" />
   <xacro:arg name="use_package_relative" default="True" />
 
   <xacro:property name="_use_package_relative" value="$(arg use_package_relative)" />
@@ -28,8 +28,12 @@
 
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>/simple_model</robotNamespace>
+      <robotNamespace>/twt</robotNamespace>
     </plugin>
+  </gazebo>
+
+  <gazebo reference="base_link">
+    <gravity>0</gravity>
   </gazebo>
 
 </robot>

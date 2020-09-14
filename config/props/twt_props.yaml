@@ -6,7 +6,7 @@ package:
   meshes_path: 'src/urdf'
 
 body:
-  name: 'base_link'
+  name: 'body'
   link:
     width: 0.117
     length: 0.3618
@@ -22,7 +22,6 @@ body:
 servo:
   velocity: 0.003141593
   effort: 0.5295591
-
 
 
 

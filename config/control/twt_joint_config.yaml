@@ -2,100 +2,118 @@ twt:
   # PUBLISH ALL STATE JOINTS
   joint_state_controller:
     type: joint_state_controller/JointStateController
-    publish_rate: 30
+    publish_rate: 50
 
 
   # LEFT FRONT LEG
-  left_front_base_link_to_coxa_controller:
+  left_front_body_to_coxa_controller:
     type: effort_controllers/JointPositionController
-    joint: left_front_base_link_to_coxa_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
+    joint: left_front_body_to_coxa_joint
+    pid: {p: 5.0, i: 0.05, d: 0.0015}
+    command: 0.00
   left_front_coxa_to_femur_controller:
     type: effort_controllers/JointPositionController
     joint: left_front_coxa_to_femur_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
+    pid: {p: 5.0, i: 0.05, d: 0.0015}
+    command: 0.00
   left_front_femur_to_tibia_controller:
     type: effort_controllers/JointPositionController
     joint: left_front_femur_to_tibia_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
+    pid: {p: 5.0, i: 0.05, d: 0.0015}
+    command: 1.57
 
 
 
   # LEFT CENTRAL LEG
-  left_central_base_link_to_coxa_controller:
+  left_central_body_to_coxa_controller:
     type: effort_controllers/JointPositionController
-    joint: left_central_base_link_to_coxa_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
+    joint: left_central_body_to_coxa_joint
+    pid: {p: 5.0, i: 0.05, d: 0.0015}
+    command: 0.00
   left_central_coxa_to_femur_controller:
     type: effort_controllers/JointPositionController
     joint: left_central_coxa_to_femur_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
+    pid: {p: 5.0, i: 0.05, d: 0.0015}
+    command: 0.00
   left_central_femur_to_tibia_controller:
     type: effort_controllers/JointPositionController
     joint: left_central_femur_to_tibia_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
+    pid: {p: 5.0, i: 0.05, d: 0.0015}
+    command: 1.57
 
 
 
   # LEFT REAR LEG
-  left_rear_base_link_to_coxa_controller:
+  left_rear_body_to_coxa_controller:
     type: effort_controllers/JointPositionController
-    joint: left_rear_base_link_to_coxa_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
+    joint: left_rear_body_to_coxa_joint
+    pid: {p: 5.0, i: 0.05, d: 0.0015}
+    command: 0.00
   left_rear_coxa_to_femur_controller:
     type: effort_controllers/JointPositionController
     joint: left_rear_coxa_to_femur_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
+    pid: {p: 5.0, i: 0.05, d: 0.0015}
+    command: 0.00
   left_rear_femur_to_tibia_controller:
     type: effort_controllers/JointPositionController
     joint: left_rear_femur_to_tibia_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
+    pid: {p: 5.0, i: 0.05, d: 0.0015}
+    command: 1.57
 
 
 
 
   # RIGHT FRONT LEG
-  right_front_base_link_to_coxa_controller:
+  right_front_body_to_coxa_controller:
     type: effort_controllers/JointPositionController
-    joint: right_front_base_link_to_coxa_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
+    joint: right_front_body_to_coxa_joint
+    pid: {p: 5.0, i: 0.05, d: 0.0015}
+    command: 0.00
   right_front_coxa_to_femur_controller:
     type: effort_controllers/JointPositionController
     joint: right_front_coxa_to_femur_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
+    pid: {p: 5.0, i: 0.05, d: 0.0015}
+    command: 0.00
   right_front_femur_to_tibia_controller:
     type: effort_controllers/JointPositionController
     joint: right_front_femur_to_tibia_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
+    pid: {p: 5.0, i: 0.05, d: 0.0015}
+    command: 1.57
 
 
 
   # RIGHT CENTRAL LEG
-  right_central_base_link_to_coxa_controller:
+  right_central_body_to_coxa_controller:
     type: effort_controllers/JointPositionController
-    joint: right_central_base_link_to_coxa_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
+    joint: right_central_body_to_coxa_joint
+    pid: {p: 5.0, i: 0.05, d: 0.0015}
+    command: 0.00
   right_central_coxa_to_femur_controller:
     type: effort_controllers/JointPositionController
     joint: right_central_coxa_to_femur_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
+    pid: {p: 5.0, i: 0.05, d: 0.0015}
+    command: 0.00
   right_central_femur_to_tibia_controller:
     type: effort_controllers/JointPositionController
     joint: right_central_femur_to_tibia_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
+    pid: {p: 5.0, i: 0.05, d: 0.0015}
+    command: 1.57
 
 
 
   # RIGHT REAR LEG
-  right_rear_base_link_to_coxa_controller:
+  right_rear_body_to_coxa_controller:
     type: effort_controllers/JointPositionController
-    joint: right_rear_base_link_to_coxa_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
+    joint: right_rear_body_to_coxa_joint
+    pid: {p: 5.0, i: 0.05, d: 0.0015}
+    command: 0.00
   right_rear_coxa_to_femur_controller:
     type: effort_controllers/JointPositionController
     joint: right_rear_coxa_to_femur_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
+    pid: {p: 5.0, i: 0.05, d: 0.0015}
+    command: 0.00
   right_rear_femur_to_tibia_controller:
     type: effort_controllers/JointPositionController
     joint: right_rear_femur_to_tibia_joint
-    pid: {p: 100.0, i: 0.01, d: 10.0}
+    pid: {p: 5.0, i: 0.05, d: 0.0015}
+    command: 1.57
