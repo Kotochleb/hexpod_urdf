@@ -32,8 +32,4 @@
     </plugin>
   </gazebo>
 
-  <gazebo reference="base_link">
-    <gravity>0</gravity>
-  </gazebo>
-
 </robot>
